@@ -141,6 +141,7 @@
 	
 	#orak_Felirat{
 		padding-top:20px;
+		//border:solid;
 	}
 	
 	#orak_online {
@@ -173,12 +174,12 @@
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 20px;
-		margin: 30px 0;
+		//margin: 30px 0;
 	}
 	
 	.benefit-card {
 		background: rgba(255, 255, 255, 0.1);
-		padding: 20px;
+		padding: 15px;
 		border-radius: 10px;
 		text-align: center;
 	}
@@ -523,6 +524,23 @@
 			padding: 30px;
 		}
 		
+		
+		#orak{
+			display:grid;
+			grid-template-columns: 30% 40% 30%;
+			grid-template-rows: 10% 20% 33% 37%;
+		}
+	
+		.benefits {
+			gap: 15px;
+			//margin: 30px 0;
+		}
+	
+		.benefit-card {
+			padding: 10px;
+		}
+	
+	
 		#kapcsolat{
 			display:grid;
 			grid-template-columns: 30% 40% 30%;
@@ -661,7 +679,7 @@
 		
 		<div id="toltes_bal_orkAtlatasa" > </div >
 		
-		<div class="benefits" id="orakAtlatasa">
+		<div class="benefits" id="orakAtlatasa" style="border:solid;" >
 			<div class="benefit-card">
 				<h4>Személyes órák</h4>
 				<p>Budapest 13. kerület, <br>Duna Pláza mellett</p>
@@ -696,7 +714,7 @@
 			<div class="methodology">
 				
 				<h3>Csoportos órák előnyei</h3>
-				<p>Fogjatok össze rokonokkal, barátokkal vagy kollégákkal, ha hasonló szintű az angolotok és jelentkezzetek be csoportos órára, így tudok a legkedvezőbb egyéni árat biztosítani. Tegyétek ezt akár online, így nem akadály, ha az ország, esetleg a világ különböző pontjain éltek.</p>
+				<p>1Fogjatok össze rokonokkal, barátokkal vagy kollégákkal, ha hasonló szintű az angolotok és jelentkezzetek be csoportos órára, így tudok a legkedvezőbb egyéni árat biztosítani. Tegyétek ezt akár online, így nem akadály, ha az ország, esetleg a világ különböző pontjain éltek.</p>
 			</div>
 		</div>
 		
@@ -778,7 +796,7 @@
 				<span style="text-align:center;">	<h3>Azonnali üzenet küldése:</h3> </span>
 				<br>
 				<form id='kontaktForm' class='kapcsolat-form' style='display:grid;gap:10px;max-width:520px;'>
-				  <input type='hidden' name='access_key' value='2ae61607-29e4-4b6f-9475-15cf0e66560e'>
+				  <input type='hidden' name='access_key' value='abcd'>
 				  <input type='hidden' name='subject' value='Kapcsolat üzenet az oldalról'>
 				  <input type='checkbox' name='botcheck' style='display:none'>
 				  <label>Név<input name='name' type='text' required placeholder='Az Ön neve' style='width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.08);color:#fff'></label>
@@ -878,5 +896,4 @@
 		});
 	</script>
 </body>
-
 </html>
