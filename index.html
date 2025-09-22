@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Egervári Petra - Angol Nyelvtanár</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	
+	html, body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+		scroll-behavior: smooth;
+        }
+	
+	.oldal{
+		height: 100vh;
+		padding-top:7vh;
+		
+	}
+	
+	.szines_oldal{
+		background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+		color: white;
+	}
+	
+	.feher_oldal{
+		background: white;
+		color: #333;
+	}
+	
+	#menu{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		background: rgba(255, 255, 255, 0.95);
+		backdrop-filter: blur(10px);
+		z-index: 1000;
+		box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+	}
+	
+	.menu-container {
+		height: 7vh;
+		width: 100%;
+		margin: 0 auto;
+		display: flex;
+		justify-content: center;
+		align-items:center;
+		gap: 30px;
+		
+	}
+	
+	.menupont{
+		cursor: pointer;
+		padding: 10px 20px;
+		border-radius: 25px;
+		transition: all 0.3s ease;
+		font-weight: 500;
+		color: #333;
+		text-decoration: none;
+	}
+	
+	.menupont:hover{
+		background: #3b82f6;
+		color: white;
+		transform: translateY(-2px);
+	}
+	
+	#bemutatkozas{
+		
+		background-image:url('Ahatter.png');
+		background-size:cover;
+		background-position:center;
+		background-repeat:no-repeat;
+		backdrop-filter:blur(8px);
+		display:flex;
+		flex-direction:row;
+		align-items: flex-start; 
+		justify-content:center;
+		
+		
+		
+	}
+	.content-container {
+		width: 60%;
+		max-width: 800px;
+		padding: 100px 20px ;
+		text-align: center;
+	}
+	
+	#bemutatkozas .content-container {
+		background: rgba(255, 255, 255, 0.15);
+		padding: 40px;
+		border-radius: 20px;
+		backdrop-filter: blur(15px);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+	}
+	#bemutatkozas_szoveg{
+		margin-top: 7vh;
+	}
+	
+	
+	#rolam {
+	  display: grid;
+	  grid-template-columns: 30% 40% 30%; 
+	  grid-template-rows: 40% 60%;       
+	  height: 100vh;
+	  width: 100%;
+	  gap: 10px;                         
+	  box-sizing: border-box;
+
+	}
+	#rolam_felirat{
+		text-align:center;
+	}
+	
+	#rolam_szoveg1 {
+	  grid-column: 2;
+	  grid-row: 1; /* Top-middle cell */
+	  overflow-y: auto;
+	}
+	
+	#rolam_szoveg2 {
+	  grid-column: 2;
+	  grid-row: 2; /* Bottom-middle cell */
+	  overflow-y: auto;
+	}
+	
+	
+	#orak{
+		display:grid;
+		grid-template-columns: 30% 40% 30%;
+		grid-template-rows: 10% 25% 30% 35%;
+	}
+	
+	#orak_Felirat{
+		padding-top:20px;
+	}
+	
+	#orak_online {
+		display: flex;
+		justify-content:center;
+		align-items:center;
+		margin-top:10px;
+	}
+	
+	#orak_online img{
+		border-radius:15px;
+		max-height: 80%;
+		max-width: 80%;
+		transform: rotate(-10deg);
+	}
+	
+	#orak_csoportos {
+		display: flex;
+		justify-content:center;
+		align-items:center;
+	}
+	
+	#orak_csoportos img{
+		border-radius:15px;
+		max-height: 70%;
+		max-width: 70%;
+		//transform: rotate(+10deg);
+	}
+	.benefits {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+		margin: 30px 0;
+	}
+	
+	.benefit-card {
+		background: rgba(255, 255, 255, 0.1);
+		padding: 20px;
+		border-radius: 10px;
+		text-align: center;
+	}
+	
+	.benefit-card h4 {
+		font-size: 1.3rem;
+		margin-bottom: 10px;
+		color: #ffd700;
+	}
+	.methodology {
+		background: rgba(255, 255, 255, 0.05);
+		padding: 30px;
+		border-radius: 15px;
+		margin: 20px 0;
+	}
+	
+	
+	#arak{
+		display:grid;
+		grid-template-columns: 30% 40% 30%;
+		grid-template-rows: 100%;
+	}
+	
+	#cashWithCard {
+		display: grid;
+		grid-template-columns: 100%;
+		grid-template-rows: 10% 40% 40% 10%;
+		
+	}
+
+	#cashWithCard img {
+		max-height: 85%;
+		max-width: 85%;
+	}
+
+	#moneyWithWings {
+		display: grid;
+		grid-template-columns: 100%;
+		grid-template-rows: 10% 40% 40% 10%;
+	}
+
+	#moneyWithWings img {
+		max-height: 85%;
+		max-width: 85%;
+		transform: rotate(-5deg);
+	}
+	
+	#content_arak{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.price-list {
+		background: rgba(255, 255, 255, 0.1);
+		padding: 30px;
+		border-radius: 15px;
+		margin: 20px 0;
+		text-align: left;
+	}
+	
+	.price-item {
+		margin: 15px 0;
+		padding: 10px 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	}
+	
+	.price-item:last-child {
+		border-bottom: none;
+	}
+	
+	
+	
+	#kapcsolat{
+		display:grid;
+		grid-template-columns: 30% 40% 30%;
+		grid-template-rows: 5% 35% 60%;
+		text-align:center;
+	}
+	
+	#kapcsolat_felirat{
+		grid-column: 2;
+		grid-row: 1;
+		display:flex;
+		flex-direction:column;
+		justify-content: flex-end;
+		align-items: center;
+
+	}
+	
+	#telefonalo_kapcsolat{
+		grid-column: 1;
+		grid-row: 2;
+		
+	}
+	
+	#telefonalo_kapcsolat img{
+		max-height: 80%;
+		max-width: 80%;
+		
+	}
+	
+	#gepelo_kapcsolat{
+		grid-column: 3;
+		grid-row: 3;
+		
+	}
+	
+	#gepelo_kapcsolat img{
+		max-height: 70%;
+		max-width: 70%;
+		
+	}
+	
+	
+	.contact-info {
+		background: rgba(255, 255, 255, 0.1);
+		padding: 30px;
+		border-radius: 15px;
+		margin: 20px 0px 50px 0px;
+		
+	}
+	
+	.contact-item {
+
+		font-size: 1.2rem;
+	}
+	
+	.contact-item a {
+		color: white;
+		text-decoration: none;
+	}
+	
+	.contact-item a:hover {
+		text-decoration: underline;
+	}
+	
+	#kontakt-form-wrap {
+		display: flex;
+		flex-direction: column;
+		text-align: left;
+		width: 100%; 
+		margin-top:12px;
+;
+	}
+
+	#kontakt-form-wrap form {
+		max-width: none !important; 
+		width: 100%; 
+	}
+	
+	
+	
+	#gyik{
+		display:grid;
+		grid-template-columns: 30% 40% 30%;
+		grid-template-rows:100%;
+		height: 100vh;
+		width: 100%;
+		padding-top: 7vh;
+	}
+	
+	#kerdojel_1{
+		grid-column: 1;
+		grid-row: 1;
+		display:flex;
+		flex-direction:column;
+		justify-content: flex-start;
+		align-items:center;
+	}   
+	#kerdojel_1 img{
+		max-height:50%;
+		max-width:50%;
+	}
+	
+	#kerdojel_2{
+		grid-column: 3;
+		grid-row: 1;
+		display:flex;
+		flex-direction:column;
+		justify-content: flex-end;
+		align-items:center;
+		padding-bottom:10px;
+	}  
+	#kerdojel_2 img{
+		max-height:55%;
+		max-width:55%;
+	}
+	
+	#content_gyik_felirat{
+		grid-column: 2;
+		grid-row: 1;
+	}
+
+	
+	
+	h1 {
+		font-size: 3rem;
+		margin-bottom: 20px;
+		font-weight: 700;
+	}
+	
+	h2 {
+		font-size: 2.5rem;
+		margin-bottom: 30px;
+		font-weight: 600;
+	}
+	
+	h3 {
+		font-size: 1.8rem;
+		margin-bottom: 20px;
+		font-weight: 500;
+	}
+	
+	p {
+		font-size: 1.1rem;
+		line-height: 1.8;
+		margin-bottom: 20px;
+		text-align: left;
+	}
+	
+	#profilkep {
+	  grid-column: 1;
+	  grid-row: 1; /* Top-left cell */
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+
+	}
+	
+	#profilkep img{
+		max-width: 50%;
+		max-height: 50%;
+	}
+	
+	#toltes_profKep {
+	  grid-column: 3;
+	  grid-row: 1; /* Top-right cell */
+
+	}
+	
+	#toltes_modszeremKep {
+	  grid-column: 1;
+	  grid-row: 2; /* Bottom-left cell */
+
+	}
+	
+	
+	#modszeremKep {
+	  grid-column: 3;
+	  grid-row: 2; /* Bottom-right cell */
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  padding: 20%;
+	}
+	
+	#modszeremKep img{
+		max-width: 50%;
+		max-height: 50%;
+	}
+	
+	
+	#rolam img {
+	  max-width: 100%;
+	  max-height: 100%;
+	  object-fit: contain;
+	}
+	
+	.faq-container {
+			margin: 20px 0;
+		}
+		
+		.faq-item {
+			margin-bottom: 15px;
+			border-radius: 8px;
+			overflow: hidden;
+			background: rgba(255,255,255,0.05);
+			border: 1px solid rgba(255,255,255,0.1);
+		}
+		
+		.faq-question {
+			padding: 15px 45px 15px 20px;
+			cursor: pointer;
+			background: rgba(255,255,255,0.08);
+			transition: all 0.3s ease;
+			position: relative;
+			font-weight: 600;
+			user-select: none;
+		}
+		
+		.faq-question:hover {
+			background: rgba(255,255,255,0.12);
+			transform: translateX(5px);
+		}
+		
+		.faq-question::after {
+			content: '▼';
+			position: absolute;
+			right: 20px;
+			top: 50%;
+			transform: translateY(-50%);
+			font-size: 1.5rem;
+			font-weight: bold;
+			transition: transform 0.3s ease;
+		}
+		
+		.faq-question.active::after {
+			transform: translateY(-50%) rotate(45deg);
+		}
+		
+		.faq-answer {
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height 0.3s ease, padding 0.3s ease;
+			background: white;
+		}
+		
+		.faq-answer.active {
+			max-height: 500px;
+			padding: 15px 20px;
+		}
+		
+		.faq-answer p {
+			margin: 0;
+			line-height: 1.5;
+		}
+	@media (max-width: 1800px) {
+		.menu-container {
+			//gap: 15px;
+		}
+		
+		.menupont {
+			//padding: 8px 15px;
+			//font-size: 0.9rem;
+		}
+		
+		
+		
+		#bemutatkozas .content-container {
+			padding: 30px;
+		}
+		
+		#kapcsolat{
+			display:grid;
+			grid-template-columns: 30% 40% 30%;
+			grid-template-rows: 1% 35% 64%;
+			text-align:center;
+		}
+		
+		.contact-info {
+			padding: 20px;
+			border-radius: 15px;
+			margin: 10px 0px 25px 0px;
+			
+		}
+		
+		.contact-item {
+
+			font-size: 1.2rem;
+		}
+		
+		#kontakt-form-wrap {
+			display: flex;
+			flex-direction: column;
+			text-align: left;
+			width: 100%; 
+			gap:5px;
+			margin-top:0px;
+		}
+		
+		#kontaktForm input, #kontaktForm textarea {
+			padding: 8px !important; /* Reduced from 10px */
+			font-size: 0.9rem;
+		}
+		
+		#kontaktKuldes {
+			padding: 8px 15px !important; /* Reduced from 12px 18px */
+			font-size: 0.9rem;
+		}
+		
+		/* Set message textarea to 4 rows */
+		#kontaktForm textarea[name="message"] {
+			rows: 4 !important;
+			min-height: 80px;
+		}
+		
+		h1 {
+			font-size: 2.5rem;
+		}
+		
+		h2 {
+			font-size: 2rem;
+		}
+		
+		h3 {
+			font-size: 1.3rem;
+		}
+		
+		p {
+			font-size: 0.9rem;
+		}
+		
+		
+
+		
+		
+	}
+
+
+	</style>
+</head>
+<body>
+	<div id="menu"> 
+		<div class="menu-container">
+			<div class="menupont" onclick="scrollToSection('rolam')">Rólam</div>
+			<div class="menupont" onclick="scrollToSection('orak')">Órák</div>
+			<div class="menupont" onclick="scrollToSection('arak')">Árak</div>
+			<div class="menupont" onclick="scrollToSection('kapcsolat')">Kapcsolat</div>
+			<div class="menupont" onclick="scrollToSection('gyik')">GYIK</div>
+		</div>
+	</div>
+	
+	<div class="oldal szines_oldal" id="bemutatkozas">
+		<div class="content-container" id="bemutatkozas_szoveg">
+			<h2>Angol Nyelvtanár</h2>
+			<p style="text-align:center;">Kommunikáció központú és személyre szabott angol nyelvoktatás kezdőtől felsőfokig, egyéni és csoportos kereteken belül, személyesen vagy online.</p>
+		</div>
+	</div>
+	
+	<div class="oldal feher_oldal" id="rolam">
+		
+		<div class="kepek" id="profilkep"> 
+			<img src="profKep.jpg" alt="egy kép rólam">
+		</div>
+		
+		
+		<div  id="rolam_szoveg1" >
+			<span id="rolam_felirat"><h2>Rólam</h2></span>
+			<br>
+			<h3>Képzettségeim és tapasztalatom</h3>
+			<p>8 évig éltem Londonban, ahol jogi szakon diplomáztam. Ezen felül Cambridge CELTA angol nyelvtanári oklevéllel és sok éves üzleti és management tapasztalattal rendelkezem nemzetközi környezeteben. Utóbbi esetében a munkavégzés során, a kapcsolattartás, a kapcsolódó dokumentációk stb. kizárólag angol nyelven történtek.</p>
+			
+		</div>
+		
+		<div class="kepek" id="toltes_profKep"> 
+			
+		</div>
+		
+		<div class="kepek" id="toltes_modszeremKep"> 
+			
+		</div>
+		
+		<div  id="rolam_szoveg2" >
+			<h3>Tanítási módszerem</h3>
+			<p>Óráimon nagy hangsúlyt fektetek a beszéd központúságra, pontosabban arra, hogy Te beszélj minél többet és ezt egyre folyékonyabban és kevesebb hibával tedd. A nyelvtan- és szókincs fejlesztés rávezetéses módszerrel történik; segítek, hogy Te magad fejtsd meg az egyes nyelvtani szerkezetek logikáját vagy az új szavak jelentését. Így sokkal hatékonyabban fogsz fejlődni és nagyobb lesz a sikerélményed is.</p>
+			<p>Ezekhez csak angolul fogunk beszélgetni, akkor is, ha kezdő vagy, mert így fogsz angolul gondolkodni és elkerülni a fejben fordítást.</p>
+			<p>Óráim egyénre szabottak, mindegyikre külön készülök figyelembe véve tanítványaim céljait, érdeklődési köreit és tanulási preferenciáit.</p>
+		</div>
+		
+		
+		
+		
+		<div class="kepek" id="modszeremKep" > 
+			<img src="tanmodszer2.jpg" alt="tanítási módszerem">
+		</div>
+		
+	</div>
+	
+	<div class="oldal szines_oldal" id="orak">
+		
+		<div id="toltes_balfelul_ork" > </div >
+		
+		<div id="orak_Felirat"  > 
+			<span style="text-align:center;"> <h2>Órák</h2> </span>
+		</div >
+		
+		<div id="toltes_jobbfelul_ork" > </div >
+		
+		<div id="toltes_bal_orkAtlatasa" > </div >
+		
+		<div class="benefits" id="orakAtlatasa">
+			<div class="benefit-card">
+				<h4>Személyes órák</h4>
+				<p>Budapest 13. kerület, <br>Duna Pláza mellett</p>
+			</div>
+			<div class="benefit-card">
+				<h4>Online órák</h4>
+				<p>Skype, Zoom, Teams</p>
+			</div>
+			<div class="benefit-card">
+				<h4>Csoportos órák</h4>
+				<p>Kedvezőbb áron, barátokkal/kollegákkal</p>
+			</div>
+		</div>
+		
+		<div id="toltes_jobb_orkAtlatasa" > </div >
+		
+		<div class="kepek" id="orak_online" > 
+			<img src="onlineLearning.png" alt="online órák">
+		</div>
+		
+		<div class="methodology"> 
+			<h3>Miért válaszd az online órákat?</h3>
+			<p>Gondoltál már rá, mennyi időt spórolhatsz az utazáson, ha online tanulsz? 
+			<br>Az óráimon ugyanazt a magas színvonalú oktatást kapod, mint személyesen, csak a saját otthonod kényelméből. Az utazásra szánt időt töltsd inkább tanulással.</p>
+		</div >
+		
+		<div id="toltes_jobb_online_ork" >  </div > 
+		
+		
+		<div id="toltes_bal_csoportos_ork" >  </div > 
+		<div >
+			<div class="methodology">
+				
+				<h3>Csoportos órák előnyei</h3>
+				<p>Fogjatok össze rokonokkal, barátokkal vagy kollégákkal, ha hasonló szintű az angolotok és jelentkezzetek be csoportos órára, így tudok a legkedvezőbb egyéni árat biztosítani. Tegyétek ezt akár online, így nem akadály, ha az ország, esetleg a világ különböző pontjain éltek.</p>
+			</div>
+		</div>
+		
+		<div class="kepek" id="orak_csoportos"> 
+			<img src="conectingPeople.jpg" alt="csoportos órák">
+		</div>
+		
+	</div>
+	
+	<div class="oldal feher_oldal" id="arak">
+	
+		<div id="cashWithCard" > 
+			<div > </div>
+			<div style="display: flex; justify-content:center; align-items:center;">	<img src="cardCashing3.png" alt="cash with card"> </div>
+			<div>	<span id='viewportSize' style='display:inline-block;margin-top:6px;'></span><br><br> </div>
+			<div> </div>
+		</div>
+		
+		<div id="content_arak" >
+		
+			<span style="text-align:center;"><h2>Árak</h2>
+			
+			<div class="price-list" style="background: #f8f9fa; color: #333;">
+				<h3>Óradíjaim:</h3>
+				<div class="price-item">
+					<strong>Ingyenes próbaóra:</strong> 30 perces szintfelmérés, célok és személyre szabott tananyag megbeszélése
+				</div>
+				<div class="price-item">
+					<strong>5.000 Ft/30 perc:</strong> Van egy üres fél órád ebédidőben vagy éppen két megbeszélés között? Töltsd hasznosan és jelentkezz be egy online angol beszélgetésre. Ha csak napi fél órát szánsz nyelvtanulásra, akkor is jelentősen fejlődhetsz!
+				</div>
+				<div class="price-item">
+					<strong>10.000 Ft/60 perc:</strong> Teljes egyéni óra személyesen vagy online
+				</div>
+				<div class="price-item">
+					<strong>Csoportos órák:</strong> Egyedi díjszabás, megbeszélés szerint
+				</div>
+			</div>
+		</div>
+		
+		<div id="moneyWithWings" > 
+			<div> </div>
+			<div> </div>
+			<div style="display: flex; justify-content:center; align-items:center;">	<img src="moneyWithWings.png" alt="money stack with wings"> </div>
+			<div> </div>
+		</div>
+		
+	</div>
+	
+	<div class="oldal szines_oldal" id="kapcsolat">
+	
+			<div id="toltes_kapcs_balFent"> </div>
+			
+			<div id="kapcsolat_felirat"> </div>
+			
+			<div id="toltes_kapcs_jobbFent"> </div>
+			
+			<div id="telefonalo_kapcsolat"> 	<img src="telefonaloEmberke.png">	</div>
+			
+			<div class="contact-info">
+				<h3>Egervári Petra</h3>
+				<br>
+				<div class="contact-item">
+					📱 <strong>Telefon:</strong> <a href="tel:+36308574832">+36 30 857 4832</a>
+				</div>
+				<br>
+				<div class="contact-item">
+					📧 <strong>Email:</strong> <a href="mailto:petraegervari@gmail.com">petraegervari@gmail.com</a>
+				</div>
+			</div>
+			
+			<div >
+				
+			</div>
+			
+			<div> </div>
+			
+			<div id='kontakt-form-wrap' >
+				<br>
+				<span style="text-align:center;">	<h3>Azonnali üzenet küldése:</h3> </span>
+				<br>
+				<form id='kontaktForm' class='kapcsolat-form' style='display:grid;gap:10px;max-width:520px;'>
+				  <input type='hidden' name='access_key' value='abcd'>
+				  <input type='hidden' name='subject' value='Kapcsolat üzenet az oldalról'>
+				  <input type='checkbox' name='botcheck' style='display:none'>
+				  <label>Név<input name='name' type='text' required placeholder='Az Ön neve' style='width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.08);color:#fff'></label>
+				  <label>Telefonszám<input id='tel' name='tel' type='tel' inputmode='tel' autocomplete='tel' required placeholder='06 30 123 4567' style='width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.08);color:#fff'></label>
+				  <label>Email
+                <input id='email' name='email' type='email' autocomplete='email' required 
+                       placeholder='pelda@email.com' 
+                       style='width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.08);color:#fff'>
+            </label>
+				  <label>Üzenet<textarea name='message' required rows='5' placeholder='Kérem, ide írja üzenetét…' style='width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.08);color:#fff'></textarea></label>
+				  <button id='kontaktKuldes' type='submit' style='padding:12px 18px;border-radius:10px;border:2px solid #fff;background:transparent;color:#fff;font-weight:600;cursor:pointer'>Üzenet küldése</button>
+				  <div id='kontaktUzenet' style='min-height:20px;font-size:0.95rem'></div>
+				</form>
+			</div>
+			
+			<div id="gepelo_kapcsolat">	<img src="gepeloEmberke.png" alt="writing on keyboard">	 </div>
+	</div>
+	
+	<div class="oldal feher_oldal price-list" id="gyik" style="background: #f8f9fa; color: #333;">
+	
+			<div id="kerdojel_1" >	<img src="kerdojelWhiteDown.png" alt="questionmark looking down"> </div>
+			
+			<div class="methodology" id="content_gyik" > 
+				<span style="text-align:center;"> <h3>Gyakran ismételt kérdések</h3> </span>
+				<br>
+				<br>
+				<div class="faq-container">
+					<div class="faq-item">
+						<div class="faq-question">Mit tartalmaz az ingyenes próbaóra?</div>
+						<div class="faq-answer">
+							<p>30 perces szintfelmérés, céljaid megbeszélése és személyre szabott tananyag tervezése.</p>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">Kezdő vagyok, segít az online óra?</div>
+						<div class="faq-answer">
+							<p>Igen! Az online órák ugyanolyan hatékonyak, mint a személyes találkozások. Minden szinten tudok segíteni.</p>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">Mennyi idő alatt látom az eredményt?</div>
+						<div class="faq-answer">
+							<p>A kommunikáció központú módszerrel gyorsan fejlődni fogsz. A pontos időtartam a gyakoriságtól és a gyakorlástól függ.</p>
+						</div>
+					</div>
+				
+				</div>
+				
+			</div>
+			
+			<div id="kerdojel_2" >	<img src="kerdojelWhiteUp.png" alt="questionmark looking up"> </div>
+	</div>
+	<script>
+		function scrollToSection(sectionId) {
+			document.getElementById(sectionId).scrollIntoView({
+				behavior: 'smooth'
+			});
+		}
+		
+		function updateViewportSize() {
+				var w = window.innerWidth;
+				var h = window.innerHeight;
+				var el = document.getElementById('viewportSize');
+				if (el) {
+					el.textContent = "Ablakméret: " + w + " × " + h + " px";
+				}
+			}
+			window.addEventListener('resize', updateViewportSize);
+			document.addEventListener('visibilitychange', function () {
+				if (!document.hidden) updateViewportSize();
+			});
+		
+		
+		function setupFAQ() {
+			var faqQuestions = document.querySelectorAll('.faq-question');
+			faqQuestions.forEach(function (question) {
+			  question.addEventListener('click', function () {
+				var answer = this.nextElementSibling;
+				var isActive = this.classList.contains('active');
+				faqQuestions.forEach(function (q) {
+				  q.classList.remove('active');
+				  q.nextElementSibling.classList.remove('active');
+				});
+				if (!isActive) {
+				  this.classList.add('active');
+				  answer.classList.add('active');
+				}
+			  });
+			});
+		  }
+		  
+		window.addEventListener('load', (event) => {
+			
+			setupFAQ();
+		});
+	</script>
+</body>
+</html>
