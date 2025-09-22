@@ -805,9 +805,9 @@
 			<div> </div>
 			
 			<div id='kontakt-form-wrap' >
-				<br>
+			
 				<span style="text-align:center;">	<h3>Azonnali üzenet küldése:</h3> </span>
-				<br>
+			
 				<form id='kontaktForm' class='kapcsolat-form' style='display:grid;gap:10px;max-width:520px;'>
 				  <input type='hidden' name='access_key' value='d0602500-3ece-48c6-86db-bef88bbcda5d'>
 				  <input type='hidden' name='subject' value='Kapcsolat üzenet az oldalról'>
@@ -908,52 +908,115 @@
 			setupFAQ();
 		});
 		
-		async function submitKontaktForm(form, msgEl, btn) {
-			var honeypot = form.querySelector('[name="botcheck"]');
-			if (honeypot && honeypot.checked) return;
-
-			btn.disabled = true;
-			msgEl.textContent = 'Küldés folyamatban…';
-
-			try {
-			  var payload = Object.fromEntries(new FormData(form));
-			  var resp = await fetch('https://api.web3forms.com/submit', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-				body: JSON.stringify(payload)
-			  });
-
-			  var rawText = await resp.text();
-			  var data; try { data = JSON.parse(rawText); } catch { data = { raw: rawText }; }
-
-			  if (resp.status === 429 || (data && data.message && /rate limited/i.test(data.message))) {
-				var cooldown = 60;
-				msgEl.textContent = `Túl sok kérés. Próbálja újra ${cooldown} mp múlva.`;
-				var timer = setInterval(function () {
-				  cooldown--;
-				  msgEl.textContent = `Túl sok kérés. Próbálja újra ${cooldown} mp múlva.`;
-				  if (cooldown <= 0) { clearInterval(timer); msgEl.textContent = ''; btn.disabled = false; }
-				}, 1000);
-				return;
-			  }
-
-			  if (!resp.ok || (data && data.success === false)) {
-				var errMsg = (data && (data.message || data.raw)) || (`HTTP ${resp.status} ${resp.statusText}`);
-				throw new Error(errMsg);
-			  }
-
-			  msgEl.textContent = 'Üzenet elküldve! Hamarosan jelentkezünk.';
-			  form.reset();
-			} catch (err) {
-			  console.error(err);
-			  msgEl.textContent = 'Hiba: ' + (err && err.message ? err.message : 'Ismeretlen hiba');
-			} finally {
-			  if (!/Próbálja újra \d+ mp múlva/.test(msgEl.textContent)) btn.disabled = false;
-			}
-		  }
-
-		  // Default section to show on load:
-		  bttn_bovebben_torzs.click();
+		document.addEventListener('DOMContentLoaded', function() {
+			const form = document.getElementById('kontaktForm');
+			const messageDiv = document.getElementById('kontaktUzenet');
+			
+			form.addEventListener('submit', function(e) {
+				e.preventDefault(); // Prevent default form submission
+				
+				// Get form data
+				const formData = new FormData(form);
+				
+				// Show loading message
+				messageDiv.innerHTML = '<span style="color: #ffd700;">Üzenet küldése...</span>';
+				messageDiv.style.display = 'block';
+				
+				// Disable submit button
+				const submitBtn = document.getElementById('kontaktKuldes');
+				submitBtn.disabled = true;
+				submitBtn.textContent = 'Küldés...';
+				
+				// Send data to Web3Forms
+				fetch('https://api.web3forms.com/submit', {
+					method: 'POST',
+					body: formData
+				})
+				.then(response => response.json())
+				.then(data => {
+					if (data.success) {
+						// Success message
+						messageDiv.innerHTML = '<span style="color: #4ade80;">✓ Üzenet sikeresen elküldve! Hamarosan felveszem Önnel a kapcsolatot.</span>';
+						
+						// Clear form
+						form.reset();
+					} else {
+						// Error message
+						messageDiv.innerHTML = '<span style="color: #ef4444;">✗ Hiba történt az üzenet küldése során. Kérjük, próbálja újra vagy használja az email címet.</span>';
+					}
+				})
+				.catch(error => {
+					// Network error
+					messageDiv.innerHTML = '<span style="color: #ef4444;">✗ Hálózati hiba. Kérjük, ellenőrizze az internetkapcsolatot és próbálja újra.</span>';
+					console.error('Error:', error);
+				})
+				.finally(() => {
+					// Re-enable submit button
+					submitBtn.disabled = false;
+					submitBtn.textContent = 'Üzenet küldése';
+					
+					// Hide message after 10 seconds
+					setTimeout(() => {
+						messageDiv.innerHTML = '';
+						messageDiv.style.display = 'none';
+					}, 10000);
+				});
+			});
+			
+			// Real-time form validation
+			const inputs = form.querySelectorAll('input[required], textarea[required]');
+			inputs.forEach(input => {
+				input.addEventListener('blur', function() {
+					if (!this.value.trim()) {
+						this.style.borderColor = '#ef4444';
+						this.style.boxShadow = '0 0 0 2px rgba(239, 68, 68, 0.2)';
+					} else {
+						this.style.borderColor = 'rgba(255,255,255,0.3)';
+						this.style.boxShadow = 'none';
+					}
+				});
+				
+				input.addEventListener('input', function() {
+					if (this.value.trim()) {
+						this.style.borderColor = 'rgba(255,255,255,0.3)';
+						this.style.boxShadow = 'none';
+					}
+				});
+			});
+			
+			// Email validation
+			const emailInput = document.getElementById('email');
+			emailInput.addEventListener('blur', function() {
+				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				if (this.value && !emailRegex.test(this.value)) {
+					this.style.borderColor = '#ef4444';
+					this.style.boxShadow = '0 0 0 2px rgba(239, 68, 68, 0.2)';
+					messageDiv.innerHTML = '<span style="color: #ef4444;">Kérjük, adjon meg egy érvényes email címet.</span>';
+					messageDiv.style.display = 'block';
+				} else if (this.value && emailRegex.test(this.value)) {
+					this.style.borderColor = '#4ade80';
+					this.style.boxShadow = '0 0 0 2px rgba(74, 222, 128, 0.2)';
+					messageDiv.innerHTML = '';
+					messageDiv.style.display = 'none';
+				}
+			});
+			
+			// Phone validation (Hungarian format)
+			const phoneInput = document.getElementById('tel');
+			phoneInput.addEventListener('blur', function() {
+				const phoneRegex = /^(\+36|06)[\s\-]?[1-9][\d\s\-]{7,8}$/;
+				if (this.value && !phoneRegex.test(this.value)) {
+					this.style.borderColor = '#ef4444';
+					this.style.boxShadow = '0 0 0 2px rgba(239, 68, 68, 0.2)';
+					messageDiv.innerHTML = '<span style="color: #ef4444;">Kérjük, adjon meg egy érvényes magyar telefonszámot (pl: +36 30 123 4567 vagy 06 30 123 4567).</span>';
+					messageDiv.style.display = 'block';
+				} else if (this.value && phoneRegex.test(this.value)) {
+					this.style.borderColor = '#4ade80';
+					this.style.boxShadow = '0 0 0 2px rgba(74, 222, 128, 0.2)';
+					messageDiv.innerHTML = '';
+					messageDiv.style.display = 'none';
+				}
+			});
 		});
 	</script>
 </body>
