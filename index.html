@@ -544,11 +544,15 @@
 		#kapcsolat{
 			display:grid;
 			grid-template-columns: 30% 40% 30%;
-			grid-template-rows: 1% 35% 64%;
+			grid-template-rows: 1% 30% 69%;
 			text-align:center;
 		}
 		
 		.contact-info {
+			display:flex;
+			flex-direction:column;
+			justify-content:center;
+			align-items:center;
 			padding: 20px;
 			border-radius: 15px;
 			margin: 10px 0px 25px 0px;
@@ -679,7 +683,7 @@
 		
 		<div id="toltes_bal_orkAtlatasa" > </div >
 		
-		<div class="benefits" id="orakAtlatasa" style="border:solid;" >
+		<div class="benefits" id="orakAtlatasa"  >
 			<div class="benefit-card">
 				<h4>Személyes órák</h4>
 				<p>Budapest 13. kerület, <br>Duna Pláza mellett</p>
@@ -714,7 +718,7 @@
 			<div class="methodology">
 				
 				<h3>Csoportos órák előnyei</h3>
-				<p>1Fogjatok össze rokonokkal, barátokkal vagy kollégákkal, ha hasonló szintű az angolotok és jelentkezzetek be csoportos órára, így tudok a legkedvezőbb egyéni árat biztosítani. Tegyétek ezt akár online, így nem akadály, ha az ország, esetleg a világ különböző pontjain éltek.</p>
+				<p>Fogjatok össze rokonokkal, barátokkal vagy kollégákkal, ha hasonló szintű az angolotok és jelentkezzetek be csoportos órára, így tudok a legkedvezőbb egyéni árat biztosítani. Tegyétek ezt akár online, így nem akadály, ha az ország, esetleg a világ különböző pontjain éltek.</p>
 			</div>
 		</div>
 		
@@ -775,11 +779,11 @@
 			
 			<div class="contact-info">
 				<h3>Egervári Petra</h3>
-				<br>
+				
 				<div class="contact-item">
 					📱 <strong>Telefon:</strong> <a href="tel:+36308574832">+36 30 857 4832</a>
 				</div>
-				<br>
+	
 				<div class="contact-item">
 					📧 <strong>Email:</strong> <a href="mailto:petraegervari@gmail.com">petraegervari@gmail.com</a>
 				</div>
@@ -792,10 +796,10 @@
 			<div> </div>
 			
 			<div id='kontakt-form-wrap' >
-				<br>
-				<span style="text-align:center;">	<h3>Azonnali üzenet küldése:</h3> </span>
-				<br>
-				<form id='kontaktForm' class='kapcsolat-form' style='display:grid;gap:10px;max-width:520px;'>
+			
+				<span style="text-align:center; border:solid;'>">	<h3>Azonnali üzenet küldése:</h3> </span>
+				
+				<form id='kontaktForm' class='kapcsolat-form' style='display:grid;gap:10px;max-width:520px;
 				  <input type='hidden' name='access_key' value='abcd'>
 				  <input type='hidden' name='subject' value='Kapcsolat üzenet az oldalról'>
 				  <input type='checkbox' name='botcheck' style='display:none'>
