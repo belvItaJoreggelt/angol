@@ -833,7 +833,7 @@
 			<div id="kerdojel_1" >	<img src="kerdojelWhiteDown.png" alt="questionmark looking down"> </div>
 			
 			<div class="methodology" id="content_gyik" > 
-				<span style="text-align:center;"> <h3>1Gyakran ismételt kérdések</h3> </span>
+				<span style="text-align:center;"> <h3>Gyakran ismételt kérdések</h3> </span>
 				<br>
 				<br>
 				<div class="faq-container">
@@ -906,6 +906,54 @@
 		window.addEventListener('load', (event) => {
 			
 			setupFAQ();
+		});
+		
+		async function submitKontaktForm(form, msgEl, btn) {
+			var honeypot = form.querySelector('[name="botcheck"]');
+			if (honeypot && honeypot.checked) return;
+
+			btn.disabled = true;
+			msgEl.textContent = 'Küldés folyamatban…';
+
+			try {
+			  var payload = Object.fromEntries(new FormData(form));
+			  var resp = await fetch('https://api.web3forms.com/submit', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+				body: JSON.stringify(payload)
+			  });
+
+			  var rawText = await resp.text();
+			  var data; try { data = JSON.parse(rawText); } catch { data = { raw: rawText }; }
+
+			  if (resp.status === 429 || (data && data.message && /rate limited/i.test(data.message))) {
+				var cooldown = 60;
+				msgEl.textContent = `Túl sok kérés. Próbálja újra ${cooldown} mp múlva.`;
+				var timer = setInterval(function () {
+				  cooldown--;
+				  msgEl.textContent = `Túl sok kérés. Próbálja újra ${cooldown} mp múlva.`;
+				  if (cooldown <= 0) { clearInterval(timer); msgEl.textContent = ''; btn.disabled = false; }
+				}, 1000);
+				return;
+			  }
+
+			  if (!resp.ok || (data && data.success === false)) {
+				var errMsg = (data && (data.message || data.raw)) || (`HTTP ${resp.status} ${resp.statusText}`);
+				throw new Error(errMsg);
+			  }
+
+			  msgEl.textContent = 'Üzenet elküldve! Hamarosan jelentkezünk.';
+			  form.reset();
+			} catch (err) {
+			  console.error(err);
+			  msgEl.textContent = 'Hiba: ' + (err && err.message ? err.message : 'Ismeretlen hiba');
+			} finally {
+			  if (!/Próbálja újra \d+ mp múlva/.test(msgEl.textContent)) btn.disabled = false;
+			}
+		  }
+
+		  // Default section to show on load:
+		  bttn_bovebben_torzs.click();
 		});
 	</script>
 </body>
