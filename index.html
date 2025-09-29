@@ -71,8 +71,12 @@
 		transform: translateY(-2px);
 	}
 	
+	.menupont.active{
+		background: #3b82f6;
+		color: white;
+	}
+	
 	#bemutatkozas{
-		
 		background-image:url('Ahatter.png');
 		background-size:cover;
 		background-position:center;
@@ -82,9 +86,6 @@
 		flex-direction:row;
 		align-items: flex-start; 
 		justify-content:center;
-		
-		
-		
 	}
 	.content-container {
 		width: 60%;
@@ -105,88 +106,109 @@
 		margin-top: 7vh;
 	}
 	
+	.kep_kozepen{
+		display:flex;
+		flex-direction:column;
+		justify-content: center;
+		align-items:center;
+	}
+	
 	
 	#rolam {
 	  display: grid;
 	  grid-template-columns: 30% 40% 30%; 
-	  grid-template-rows: 40% 60%;       
+	  grid-template-rows: 10%, 30% 50% 10%;       
 	  height: 100vh;
-	  width: 100%;
-	  gap: 10px;                         
+	  width: 100%;                         
 	  box-sizing: border-box;
-
-	}
-	#rolam_felirat{
-		text-align:center;
-	}
 	
+	}
+
 	#rolam_szoveg1 {
 	  grid-column: 2;
-	  grid-row: 1; /* Top-middle cell */
+	  grid-row: 2; 
 	  overflow-y: auto;
+	  display:flex;
+	  flex-direction:column;
+	  justify-content:center;
 	}
 	
 	#rolam_szoveg2 {
 	  grid-column: 2;
-	  grid-row: 2; /* Bottom-middle cell */
+	  grid-row: 3; 
 	  overflow-y: auto;
+	  
 	}
 	
 	
 	#orak{
 		display:grid;
 		grid-template-columns: 30% 40% 30%;
-		grid-template-rows: 10% 25% 30% 35%;
+		grid-template-rows: 5% 25% 5% 30% 35%;
 	}
 	
-	#orak_Felirat{
-		padding-top:20px;
-		//border:solid;
+	#orakAtlatasa{
+		grid-column:2;
+		grid-row:2;
 	}
 	
-	#orak_online {
+	#orak_online_szoveg {
+		grid-column:2;
+		grid-row:4;
 		display: flex;
-		justify-content:center;
-		align-items:center;
+		flex-direction:column;
+
 		margin-top:10px;
 	}
 	
-	#orak_online img{
+	#orak_online_kep {
+		grid-column:1;
+		grid-row:4;
+		
+	}
+	
+	#orak_online_kep img{
 		border-radius:15px;
 		max-height: 80%;
 		max-width: 80%;
 		transform: rotate(-10deg);
 	}
 	
-	#orak_csoportos {
-		display: flex;
-		justify-content:center;
-		align-items:center;
+	#orak_csoportos_szoveg {
+		grid-column:2;
+		grid-row:5;
+
 	}
 	
-	#orak_csoportos img{
+	#orak_csoportos_kep {
+		grid-column:3;
+		grid-row:5;
+	}
+	
+	#orak_csoportos_kep img{
 		border-radius:15px;
 		max-height: 70%;
 		max-width: 70%;
-		//transform: rotate(+10deg);
+		
 	}
 	.benefits {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 20px;
-		//margin: 30px 0;
+		
 	}
 	
 	.benefit-card {
 		background: rgba(255, 255, 255, 0.1);
-		padding: 15px;
+		padding: 15px 15px 0px 15px;
 		border-radius: 10px;
 		text-align: center;
+		
 	}
 	
 	.benefit-card h4 {
 		font-size: 1.3rem;
-		margin-bottom: 10px;
+		
 		color: #ffd700;
 	}
 	.methodology {
@@ -376,6 +398,39 @@
 	}
 
 	
+	#erdekessegek{
+		display:grid;
+		grid-template-columns: 30% 40% 30%;
+		grid-template-rows: 5% 45% 45% 5%;
+	}
+	
+	#erdekessegek_szoveg1{
+		grid-column:2;
+		grid-row:2;
+		background: rgba(255, 255, 255, 0.1);
+		padding: 30px 30px 0px 30px;
+		border-radius: 15px;
+		margin: 20px 0;
+	}
+	
+	#erdekessegek_szoveg2{
+		grid-column:2;
+		grid-row:3;
+		background: rgba(255, 255, 255, 0.1);
+		padding: 30px 30px 0px 30px;
+		border-radius: 15px;
+		margin: 20px 0;
+	}
+	
+	#ugato_kutyak_kep{
+		grid-column:1;
+		grid-row:2;
+	}
+	
+	#idiomak_kep{
+		grid-column:1;
+		grid-row:2;
+	}
 	
 	h1 {
 		font-size: 3rem;
@@ -404,7 +459,7 @@
 	
 	#profilkep {
 	  grid-column: 1;
-	  grid-row: 1; /* Top-left cell */
+	  grid-row: 2; /* Top-left cell */
 	  display: flex;
 	  justify-content: center;
 	  align-items: center;
@@ -416,22 +471,11 @@
 		max-height: 50%;
 	}
 	
-	#toltes_profKep {
-	  grid-column: 3;
-	  grid-row: 1; /* Top-right cell */
 
-	}
-	
-	#toltes_modszeremKep {
-	  grid-column: 1;
-	  grid-row: 2; /* Bottom-left cell */
-
-	}
-	
 	
 	#modszeremKep {
 	  grid-column: 3;
-	  grid-row: 2; /* Bottom-right cell */
+	  grid-row: 3; /* Bottom-right cell */
 	  display: flex;
 	  justify-content: center;
 	  align-items: center;
@@ -508,6 +552,7 @@
 			margin: 0;
 			line-height: 1.5;
 		}
+		
 	@media (max-width: 1800px) {
 		.menu-container {
 			gap: 20px;
@@ -533,7 +578,7 @@
 	
 		.benefits {
 			gap: 15px;
-			//margin: 30px 0;
+			/*margin: 30px 0;*/
 		}
 	
 		.benefit-card {
@@ -631,6 +676,7 @@
 			<div class="menupont" onclick="scrollToSection('arak')">Árak</div>
 			<div class="menupont" onclick="scrollToSection('kapcsolat')">Kapcsolat</div>
 			<div class="menupont" onclick="scrollToSection('gyik')">GYIK</div>
+			<div class="menupont" onclick="scrollToSection('erdekessegek')">Érdekességek</div>
 		</div>
 	</div>
 	
@@ -650,21 +696,14 @@
 		
 		<div  id="rolam_szoveg1" >
 			<br>
-			<h3>Képzettségeim és tapasztalatom</h3>
+			<span style="text-align:center;">	<h3>Képzettségeim és tapasztalatom</h3> </span>
 			<p>8 évig éltem Londonban, ahol jogi szakon diplomáztam. Ezen felül Cambridge CELTA angol nyelvtanári oklevéllel és sok éves üzleti és management tapasztalattal rendelkezem nemzetközi környezeteben. Utóbbi esetében a munkavégzés során, a kapcsolattartás, a kapcsolódó dokumentációk stb. kizárólag angol nyelven történtek.</p>
 			
 		</div>
 		
-		<div class="kepek" id="toltes_profKep"> 
-			
-		</div>
-		
-		<div class="kepek" id="toltes_modszeremKep"> 
-			
-		</div>
 		
 		<div  id="rolam_szoveg2" >
-			<h3>Tanítási módszerem</h3>
+			<span style="text-align:center;">	<h3>Tanítási módszerem</h3>	</span>
 			<p>Óráimon nagy hangsúlyt fektetek a beszéd központúságra, pontosabban arra, hogy Te beszélj minél többet és ezt egyre folyékonyabban és kevesebb hibával tedd. A nyelvtan- és szókincs fejlesztés rávezetéses módszerrel történik; segítek, hogy Te magad fejtsd meg az egyes nyelvtani szerkezetek logikáját vagy az új szavak jelentését. Így sokkal hatékonyabban fogsz fejlődni és nagyobb lesz a sikerélményed is.</p>
 			<p>Ezekhez csak angolul fogunk beszélgetni, akkor is, ha kezdő vagy, mert így fogsz angolul gondolkodni és elkerülni a fejben fordítást.</p>
 			<p>Óráim egyénre szabottak, mindegyikre külön készülök figyelembe véve tanítványaim céljait, érdeklődési köreit és tanulási preferenciáit.</p>
@@ -680,18 +719,7 @@
 	</div>
 	
 	<div class="oldal szines_oldal" id="orak">
-		
-		<div id="toltes_balfelul_ork" > </div >
-		
-		<div id="orak_Felirat"  > 
-
-		</div >
-		
-		<div id="toltes_jobbfelul_ork" > </div >
-		
-		<div id="toltes_bal_orkAtlatasa" > </div >
-		
-		<div class="benefits" id="orakAtlatasa" >
+		<div class="benefits" id="orakAtlatasa">
 			<div class="benefit-card">
 				<h4>Személyes órák</h4>
 				<p>Budapest 13. kerület, <br>Duna Pláza mellett</p>
@@ -706,35 +734,25 @@
 				<br>barátokkal/kollegákkal</p>
 			</div>
 		</div>
-		
-		<div id="toltes_jobb_orkAtlatasa" > </div >
-		
-		<div class="kepek" id="orak_online" > 
+
+		<div class="kep_kozepen" id="orak_online_kep">
 			<img src="onlineLearning.png" alt="online órák">
 		</div>
-		
-		<div class="methodology"> 
-			<h3>Miért válaszd az online órákat?</h3>
+
+		<div class="methodology" id="orak_online_szoveg">
+			<span style="text-align:center;">	<h3>Miért válaszd az online órákat?</h3> <span>
 			<p>Gondoltál már rá, mennyi időt spórolhatsz az utazáson, ha online tanulsz? 
 			<br>Az óráimon ugyanazt a magas színvonalú oktatást kapod, mint személyesen, csak a saját otthonod kényelméből. Az utazásra szánt időt töltsd inkább tanulással.</p>
-		</div >
-		
-		<div id="toltes_jobb_online_ork" >  </div > 
-		
-		
-		<div id="toltes_bal_csoportos_ork" >  </div > 
-		<div >
-			<div class="methodology">
-				
-				<h3>Csoportos órák előnyei</h3>
-				<p>Fogjatok össze rokonokkal, barátokkal vagy kollégákkal, ha hasonló szintű az angolotok és jelentkezzetek be csoportos órára, így tudok a legkedvezőbb egyéni árat biztosítani. Tegyétek ezt akár online, így nem akadály, ha az ország, esetleg a világ különböző pontjain éltek.</p>
-			</div>
 		</div>
-		
-		<div class="kepek" id="orak_csoportos"> 
+
+		<div class="methodology" id="orak_csoportos_szoveg">
+			<span style="text-align:center;">	<h3>Csoportos órák előnyei</h3> </span>
+			<p>Fogjatok össze rokonokkal, barátokkal vagy kollégákkal, ha hasonló szintű az angolotok és jelentkezzetek be csoportos órára, így tudok a legkedvezőbb egyéni árat biztosítani. Tegyétek ezt akár online, így nem akadály, ha az ország, esetleg a világ különböző pontjain éltek.</p>
+		</div>
+
+		<div class="kep_kozepen" id="orak_csoportos_kep">
 			<img src="conectingPeople.jpg" alt="csoportos órák">
 		</div>
-		
 	</div>
 	
 	<div class="oldal feher_oldal" id="arak">
@@ -749,7 +767,7 @@
 		<div id="content_arak" >
 			
 			<div class="price-list" style="background: #f8f9fa; color: #333;">
-				<h3>Óradíjaim:</h3>
+				<span style="text-align:center;">	<h3>Óradíjaim:</h3>	</span>
 				<div class="price-item">
 					<strong>Ingyenes próbaóra:</strong> Szintfelmérés, célok és személyre szabott tananyag megbeszélése
 				</div>
@@ -860,7 +878,49 @@
 			
 			<div id="kerdojel_2" >	<img src="kerdojelWhiteUp.png" alt="questionmark looking up"> </div>
 	</div>
+	
+	<div class="oldal szines_oldal" id="erdekessegek">
+		
+		<div id="ugato_kutyak_kep"> 
+			<div id="viewportSize" style="color:#fff;font-weight:600;"></div>
+		</div>
+		
+		<div id="erdekessegek_szoveg1"> 
+			<span style="text-align:center">	<h3>Tudtad hogy az állatok is több nyelven beszélnek?</h3>	</span>
+			<p > 
+			Na jó ez igazából így nem igaz, de az igaz, hogy angolul meglepően sokszor eltérőek a hanghatást jelző szavak, mint magyarul. Ilyen példáúl az...
+			</p> 
+			
+			<p style="text-align:center;"> 
+			óra ketyegése: tikk takk  –  tick tock
+			<br>kacsa: háp háp  –  quack quack
+			<br>víz csöpögése:	csöp csöp  –  drip drop 
+			<br>kutya: vau vau  –  woof woof 
+			<br>csengő hangja:	bim bam  –  ding dong
+			</p>
+		</div>
+		
+		<div id="erdekessegek_szoveg2">
+			<span style="text-align:center">	<h3>Idiómák</h3>	</span>
+			<p style="text-align:center"> 
+			<i>szószerint nehezen vagy egyáltalán nem lefordítható kifejezések, amelyeket használva az angolok valóban úgy érzik hogy egy nyelvet beszélsz velük</i>
+			</p>
+			
+			<p style="text-align:center;"> 
+			out of the blue → derült égből (váratlanul)
+			<br>hit the road → útnak indul
+			<br>on thin ice → kényes, veszélyes helyzetben lenni
+			<br>get out of hand	→ elveszti az irányítást
+			<br>couch potato → lusta emberekre haszálják
+			</p>
+			
+		</div>
+		
+		<div id="idiomak_kep"> </div>
+	</div>
+	
 	<script>
+
 		function scrollToSection(sectionId) {
 			document.getElementById(sectionId).scrollIntoView({
 				behavior: 'smooth'
@@ -1013,6 +1073,31 @@
 					messageDiv.style.display = 'none';
 				}
 			});
+		});
+		
+		document.addEventListener('DOMContentLoaded', function () {
+			const header = document.getElementById('menu');
+			const links = Array.from(document.querySelectorAll('.menu-container .menupont'));
+			const getId = el => ((el.getAttribute('onclick') || '').match(/scrollToSection\('([^']+)'\)/) || [])[1];
+			const pairs = links
+				.map(el => ({ el, id: getId(el) }))
+				.filter(p => p.id && document.getElementById(p.id))
+				.map(p => ({ el: p.el, sec: document.getElementById(p.id) }));
+
+			function setActiveByScroll() {
+				const top = window.scrollY + (header ? header.offsetHeight + 1 : 1);
+				let current = pairs[0];
+				for (const p of pairs) {
+					if (p.sec.offsetTop <= top) current = p; else break;
+				}
+				links.forEach(l => l.classList.remove('active'));
+				if (current) current.el.classList.add('active');
+			}
+
+			window.addEventListener('scroll', setActiveByScroll, { passive: true });
+			window.addEventListener('resize', setActiveByScroll);
+			window.addEventListener('load', setActiveByScroll);
+			setActiveByScroll();
 		});
 	</script>
 </body>
