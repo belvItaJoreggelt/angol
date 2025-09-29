@@ -139,6 +139,33 @@
 	  overflow-y: auto;
 	  
 	}
+	
+	#profilkep img{
+		max-width: 80%;
+		max-height: 80%;
+		
+	}
+	
+
+	
+	#modszeremKep {
+	  grid-column: 3;
+	  grid-row: 3; 
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  padding: 20%;
+	}
+	
+	#modszeremKep img{
+		max-width: 50%;
+		max-height: 50%;
+	}
+	
+	
+	
+	
+	
 	/*
 	#cucc {
 	  grid-column: 2;
@@ -412,7 +439,7 @@
 	
 	#erdekessegek{
 		display:grid;
-		grid-template-columns: 30% 40% 30%;
+		grid-template-columns: 28% 44% 28%;
 		grid-template-rows: 3% 48% 47% 2%;
 	}
 	
@@ -444,8 +471,8 @@
 	}
 	
 	#ugato_kutyak_kep img{
-		max-height: 100%;
-		max-width: 100%;
+		max-height: 90%;
+		max-width: 90%;
 	}
 	
 	#idiomak_kep{
@@ -458,8 +485,9 @@
 	}
 	
 	#idiomak_kep img{
-		max-height: 70%;
-		max-width: 70%;
+		max-height: 55%;
+		max-width: 55%;
+		border-radius: 15px;
 	}
 	
 	h1 {
@@ -487,42 +515,21 @@
 		text-align: left;
 	}
 	
+	.smallerMrgnBttm{
+		margin-bottom: 5px;
+	}
+	
+	
 	#profilkep {
 	  grid-column: 1;
-	  grid-row: 2; /* Top-left cell */
+	  grid-row: 2; 
 	  display: flex;
 	  justify-content: center;
 	  align-items: center;
 
 	}
 	
-	#profilkep img{
-		max-width: 50%;
-		max-height: 50%;
-	}
 	
-
-	
-	#modszeremKep {
-	  grid-column: 3;
-	  grid-row: 3; /* Bottom-right cell */
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  padding: 20%;
-	}
-	
-	#modszeremKep img{
-		max-width: 50%;
-		max-height: 50%;
-	}
-	
-	
-	#rolam img {
-	  max-width: 100%;
-	  max-height: 100%;
-	  object-fit: contain;
-	}
 	
 	.faq-container {
 			margin: 20px 0;
@@ -589,14 +596,14 @@
 		}
 		
 		.menupont {
-			padding: 8px 18px;
-			font-size: 0.9rem;
+			padding: 7px 15px;
+			font-size: 0.8rem;
 		}
 		
 		
 		
 		#bemutatkozas .content-container {
-			padding: 30px;
+			padding: 27px;
 		}
 		
 		#rolam {
@@ -631,15 +638,20 @@
 		.contact-item {
 			font-size: 1rem;
 		}		
-
+		
+		#telefonalo_kapcsolat img{
+			max-height: 150%;
+			max-width: 100%;
+		}
+		
 		#gepelo_kapcsolat{
 			margin-top:10%;
 			
 		}
 		
 		#gepelo_kapcsolat img{
-			max-height: 52%;
-			max-width: 52%;
+			max-height: 60%;
+			max-width: 60%;
 			
 		}
 		.contact-info {
@@ -656,7 +668,7 @@
 		#erdekessegek{
 			display:grid;
 			grid-template-columns: 25% 50% 25%;
-			grid-template-rows: 3% 48% 47% 2%;
+			grid-template-rows: 2% 49% 47% 2%;
 		}
 	
 		#erdekessegek_szoveg1{
@@ -670,12 +682,160 @@
 			border-radius: 15px;
 			margin: 8px 0;
 		}
+		
+		#ugato_kutyak_kep img{
+			max-height: 90%;
+			max-width: 90%;
+		}
+		#idiomak_kep img{
+			max-height: 55%;
+			max-width: 55%;
+		}
+	
+		h1 {
+			font-size: 2.9rem;
+			margin-bottom: 20px;
+			font-weight: 700;
+		}
+		
+		h2 {
+			font-size: 2.4rem;
+			margin-bottom: 30px;
+			font-weight: 600;
+		}
+		
+		h3 {
+			font-size: 1.7rem;
+			margin-bottom: 20px;
+			font-weight: 500;
+		}
 	
 		p{
 			font-size: 1rem;
 			line-height: 1.7;
 		}
 		
+	}
+	
+	@media (max-width:1400px){
+		.menu-container {
+			gap: 17px;
+		}
+		
+		.menupont {
+			padding: 7px 15px;
+			font-size: 0.8rem;
+		}
+		
+		
+		
+		#bemutatkozas .content-container {
+			padding: 27px;
+		}
+		
+		#rolam {
+		  grid-template-columns: 22% 56% 22%; 
+		  grid-template-rows: 1%, 18% 62% 1%;       
+		}
+		
+		#orak{
+			display:grid;
+			grid-template-columns: 20% 60% 20%;
+			grid-template-rows: 3% 15% 5% 34% 40% 3%;
+		}
+	
+		.benefits {
+			gap: 13px;
+			
+		}
+	
+		.benefit-card {
+			padding: 10px;
+		}
+	
+		/*
+		#kapcsolat{
+			display:grid;
+			grid-template-columns: 30% 40% 30%;
+			grid-template-rows: 1% 25% 74%;
+			text-align:center;
+		}
+		*/
+		
+		.contact-item {
+			font-size: 0.9rem;
+		}		
+		
+		#telefonalo_kapcsolat img{
+			max-height: 115%;
+			max-width: 100%;
+		}
+		
+
+		
+		#gepelo_kapcsolat img{
+			max-height: 57%;
+			max-width: 57%;
+			
+		}
+		.contact-info {
+			padding: 18px;
+			margin: 8px 0px 22px 0px;
+			
+		}
+		
+		#erdekessegek{
+			display:grid;
+			grid-template-columns: 22% 57% 21%;
+			grid-template-rows: 2% 51% 45% 2%;
+		}
+	
+		#erdekessegek_szoveg1{
+			padding: 20px 20px 0px 20px;
+
+			margin: 5px 0;
+		}
+		
+		#erdekessegek_szoveg2{
+			padding: 20px 20px 0px 20px;
+			border-radius: 15px;
+			margin: 5px 0;
+		}
+		
+		#ugato_kutyak_kep img{
+			max-height: 90%;
+			max-width: 90%;
+		}
+		#idiomak_kep img{
+			max-height: 52%;
+			max-width: 52%;
+		}
+		
+		h1 {
+			font-size: 2.5rem;
+			margin-bottom: 20px;
+			font-weight: 700;
+		}
+		
+		h2 {
+			font-size: 2.2rem;
+			margin-bottom: 30px;
+			font-weight: 600;
+		}
+		
+		h3 {
+			font-size: 1.5rem;
+			margin-bottom: 20px;
+			font-weight: 500;
+		}
+	
+		p{
+			font-size: 0.9rem;
+			line-height: 1.7;
+		}
+	}
+	
+	@media (max-width:900px){}
 
 	</style>
 </head>
@@ -708,16 +868,16 @@
 		<div  id="rolam_szoveg1" >
 			<br>
 			<span style="text-align:center;">	<h3>Képzettségeim és tapasztalatom</h3> </span>
-			<p>8 évig éltem Londonban, ahol jogi szakon diplomáztam. Ezen felül Cambridge CELTA angol nyelvtanári oklevéllel és sok éves üzleti és management tapasztalattal rendelkezem nemzetközi környezeteben. Utóbbi esetében a munkavégzés során, a kapcsolattartás, a kapcsolódó dokumentációk stb. kizárólag angol nyelven történtek.</p>
+			<p >8 évig éltem Londonban, ahol jogi szakon diplomáztam. Ezen felül Cambridge CELTA angol nyelvtanári oklevéllel és sok éves üzleti és management tapasztalattal rendelkezem nemzetközi környezeteben. Utóbbi esetében a munkavégzés során, a kapcsolattartás, a kapcsolódó dokumentációk stb. kizárólag angol nyelven történtek.</p>
 			
 		</div>
 		
 		
-		<div  id="rolam_szoveg2" >
+		<div  id="rolam_szoveg2"  >
 			<span style="text-align:center;">	<h3>Tanítási módszerem</h3>	</span>
-			<p>Óráimon nagy hangsúlyt fektetek a beszéd központúságra, pontosabban arra, hogy Te beszélj minél többet és ezt egyre folyékonyabban és kevesebb hibával tedd. A nyelvtan- és szókincs fejlesztés rávezetéses módszerrel történik; segítek, hogy Te magad fejtsd meg az egyes nyelvtani szerkezetek logikáját vagy az új szavak jelentését. Így sokkal hatékonyabban fogsz fejlődni és nagyobb lesz a sikerélményed is.</p>
-			<p>Ezekhez csak angolul fogunk beszélgetni, akkor is, ha kezdő vagy, mert így fogsz angolul gondolkodni és elkerülni a fejben fordítást.</p>
-			<p>Óráim egyénre szabottak, mindegyikre külön készülök figyelembe véve tanítványaim céljait, érdeklődési köreit és tanulási preferenciáit.</p>
+			<p class="smallerMrgnBttm">Óráimon nagy hangsúlyt fektetek a beszéd központúságra, pontosabban arra, hogy Te beszélj minél többet és ezt egyre folyékonyabban és kevesebb hibával tedd. A nyelvtan- és szókincs fejlesztés rávezetéses módszerrel történik; segítek, hogy Te magad fejtsd meg az egyes nyelvtani szerkezetek logikáját vagy az új szavak jelentését. Így sokkal hatékonyabban fogsz fejlődni és nagyobb lesz a sikerélményed is.</p>
+			<p class="smallerMrgnBttm">Ezekhez csak angolul fogunk beszélgetni, akkor is, ha kezdő vagy, mert így fogsz angolul gondolkodni és elkerülni a fejben fordítást.</p>
+			<p class="smallerMrgnBttm">Óráim egyénre szabottak, mindegyikre külön készülök figyelembe véve tanítványaim céljait, érdeklődési köreit és tanulási preferenciáit.</p>
 		</div>
 		
 		
@@ -926,7 +1086,7 @@
 		</div>
 		
 		<div id="idiomak_kep"> 
-			<img src="hajra2.png" alt="Hajra! - let's go!">
+			<img src="hajra3.png" alt="Hajra! - let's go!">
 		</div>
 	</div>
 	
