@@ -144,7 +144,7 @@
 	#orak{
 		display:grid;
 		grid-template-columns: 30% 40% 30%;
-		grid-template-rows: 5% 25% 5% 30% 35%;
+		grid-template-rows: 5% 20% 5% 30% 35% 5%;
 	}
 	
 	#orakAtlatasa{
@@ -202,8 +202,14 @@
 		background: rgba(255, 255, 255, 0.1);
 		padding: 15px 15px 0px 15px;
 		border-radius: 10px;
+		display:flex;
+		flex-direction:column;
 		text-align: center;
 		
+	}
+	
+	.benefit-card p{
+		text-align:center;
 	}
 	
 	.benefit-card h4 {
@@ -425,11 +431,29 @@
 	#ugato_kutyak_kep{
 		grid-column:1;
 		grid-row:2;
+		display:flex;
+		flex-direction:column;
+		justify-content:center;
+		align-items:center;
+	}
+	
+	#ugato_kutyak_kep img{
+		max-height: 100%;
+		max-width: 100%;
 	}
 	
 	#idiomak_kep{
-		grid-column:1;
-		grid-row:2;
+		grid-column:3;
+		grid-row:3;
+		display:flex;
+		flex-direction:column;
+		justify-content:center;
+		align-items:center;
+	}
+	
+	#idiomak_kep img{
+		max-height: 70%;
+		max-width: 70%;
 	}
 	
 	h1 {
@@ -553,10 +577,83 @@
 			line-height: 1.5;
 		}
 		
-	max-width: 1750px{
+	@media (max-width: 1800px) {
+		.menu-container {
+			gap: 20px;
+		}
+		
+		.menupont {
+			padding: 8px 18px;
+			font-size: 0.9rem;
+		}
+		
+		
+		
+		#bemutatkozas .content-container {
+			padding: 30px;
+		}
+		
+		#rolam {
+		  display: grid;
+		  grid-template-columns: 25% 50% 25%; 
+		  grid-template-rows: 10%, 30% 50% 10%;       
+		}
+		#orak{
+			display:grid;
+			grid-template-columns: 25% 50% 25%;
+			grid-template-rows: 5% 15% 5% 32% 38% 5%;
+		}
 	
-	}
-
+		.benefits {
+			gap: 15px;
+			
+		}
+	
+		.benefit-card {
+			padding: 10px;
+		}
+	
+	
+		#kapcsolat{
+			display:grid;
+			grid-template-columns: 30% 40% 30%;
+			grid-template-rows: 1% 25% 74%;
+			text-align:center;
+		}
+		
+		#gepelo_kapcsolat{
+			margin-top:10%;
+			
+		}
+		
+		#gepelo_kapcsolat img{
+			max-height: 52%;
+			max-width: 52%;
+			
+		}
+		.contact-info {
+			display:flex;
+			flex-direction:column;
+			justify-content:center;
+			align-items:center;
+			padding: 20px;
+			border-radius: 15px;
+			margin: 10px 0px 25px 0px;
+			
+		}
+		
+		#erdekessegek{
+			display:grid;
+			grid-template-columns: 25% 50% 25%;
+			grid-template-rows: 3% 48% 47% 2%;
+		}
+	
+	
+		p{
+			font-size: 1rem;
+			line-height: 1.7;
+		}
+		
 
 	</style>
 </head>
@@ -706,7 +803,7 @@
 				</div>
 			</div>
 			
-			<div >	</div>
+			<div >	<div id="viewportSize" style="color:#fff;font-weight:600;"></div>	</div>
 			
 			<div> 	</div>
 			
@@ -774,13 +871,12 @@
 	<div class="oldal szines_oldal" id="erdekessegek">
 		
 		<div id="ugato_kutyak_kep"> 
-			<div id="viewportSize" style="color:#fff;font-weight:600;"></div>
+			<img src="kutyler.png" alt="barking dogs">
 		</div>
 		
 		<div id="erdekessegek_szoveg1"> 
 			<span style="text-align:center">	<h3>Tudtad hogy az állatok is több nyelven beszélnek?</h3>	</span>
-			<p > 
-			Na jó ez igazából így nem igaz, de az igaz, hogy angolul meglepően sokszor eltérőek a hanghatást jelző szavak, mint magyarul. Ilyen példáúl az...
+			<p >Na jó ez igazából így nem igaz, de az igaz, hogy angolul meglepően sokszor eltérőek a hanghatást jelző szavak, mint magyarul. Ilyen példáúl az...
 			</p> 
 			
 			<p style="text-align:center;"> 
@@ -808,7 +904,9 @@
 			
 		</div>
 		
-		<div id="idiomak_kep"> </div>
+		<div id="idiomak_kep"> 
+			<img src="hajra.png" alt="Hajra! - let's go!">
+		</div>
 	</div>
 	
 	<script>
