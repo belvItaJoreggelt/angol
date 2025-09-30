@@ -1710,13 +1710,21 @@
 				.map(p => ({ el: p.el, sec: document.getElementById(p.id) }));
 
 			function setActiveByScroll() {
-				const top = window.scrollY + (header ? header.offsetHeight + 1 : 1);
-				let current = pairs[0];
-				for (const p of pairs) {
-					if (p.sec.offsetTop <= top) current = p; else break;
-				}
+			  const top = window.scrollY + (header ? header.offsetHeight + 1 : 1);
+			  const firstSecTop = document.getElementById('rolam').offsetTop;
+
+			  // If we're still in #bemutatkozas, clear all actives
+			  if (top < firstSecTop) {
 				links.forEach(l => l.classList.remove('active'));
-				if (current) current.el.classList.add('active');
+				return;
+			  }
+
+			  let current = null;
+			  for (const p of pairs) {
+				if (p.sec.offsetTop <= top) current = p; else break;
+			  }
+			  links.forEach(l => l.classList.remove('active'));
+			  if (current) current.el.classList.add('active');
 			}
 
 			window.addEventListener('scroll', setActiveByScroll, { passive: true });
