@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Egervári Petra - Angol Nyelvtanár</title>
+	<title>4Egervári Petra - Angol Nyelvtanár</title>
 	<style>
 	*{
 		margin: 0;
@@ -1334,18 +1334,8 @@
 			line-height: 1.7;
 		}
 	}
-	
-	
-	
-	@media (hover: none) {
-	  .menupont:hover {
-		background: transparent;
-		color: #333;
-		transform: none;
-	  }
-	}
 
-
+	
 
 	</style>
 </head>
@@ -1751,36 +1741,51 @@
 		});
 		
 		document.addEventListener('DOMContentLoaded', function () {
-			const header = document.getElementById('menu');
-			const links = Array.from(document.querySelectorAll('.menu-container .menupont'));
-			const getId = el => ((el.getAttribute('onclick') || '').match(/scrollToSection\('([^']+)'\)/) || [])[1];
-			const pairs = links
-				.map(el => ({ el, id: getId(el) }))
-				.filter(p => p.id && document.getElementById(p.id))
-				.map(p => ({ el: p.el, sec: document.getElementById(p.id) }));
+		  const header = document.getElementById('menu');
+		  const links = Array.from(document.querySelectorAll('.menu-container .menupont'));
+		  const getId = el => ((el.getAttribute('onclick') || '').match(/scrollToSection\('([^']+)'\)/) || [])[1];
+		  const pairs = links
+			.map(el => ({ el, id: getId(el) }))
+			.filter(p => p.id && document.getElementById(p.id))
+			.map(p => ({ el: p.el, sec: document.getElementById(p.id), id: p.id }));
 
-			function setActiveByScroll() {
-			  const top = window.scrollY + (header ? header.offsetHeight + 1 : 1);
-			  const firstSecTop = document.getElementById('rolam').offsetTop;
+		  // Instant visual feedback on tap
+		  links.forEach(l => {
+			l.addEventListener('click', () => {
+			  links.forEach(x => x.classList.remove('active'));
+			  l.classList.add('active');
+			}, { passive: true });
+		  });
 
-			  // If we're still in #bemutatkozas, clear all actives
-			  if (top < firstSecTop) {
-				links.forEach(l => l.classList.remove('active'));
-				return;
-			  }
+		  // Observe sections to set active accurately while/after scrolling
+		  const opts = {
+			root: null,
+			rootMargin: `-${(header ? header.offsetHeight : 0) + 1}px 0px 0px 0px`,
+			threshold: [0.4, 0.6, 0.8]
+		  };
 
-			  let current = null;
-			  for (const p of pairs) {
-				if (p.sec.offsetTop <= top) current = p; else break;
-			  }
-			  links.forEach(l => l.classList.remove('active'));
-			  if (current) current.el.classList.add('active');
+		  let visible = new Map();
+
+		  const io = new IntersectionObserver((entries) => {
+			entries.forEach(e => visible.set(e.target.id, e));
+			// pick the most visible section, but ignore 'bemutatkozas'
+			const best = Array.from(visible.values())
+			  .filter(v => v.isIntersecting && v.target.id !== 'bemutatkozas')
+			  .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+			links.forEach(l => l.classList.remove('active'));
+			if (best) {
+			  const match = pairs.find(p => p.id === best.target.id);
+			  if (match) match.el.classList.add('active');
 			}
+			// If only 'bemutatkozas' is visible, keep all inactive
+		  }, opts);
 
-			window.addEventListener('scroll', setActiveByScroll, { passive: true });
-			window.addEventListener('resize', setActiveByScroll);
-			window.addEventListener('load', setActiveByScroll);
-			setActiveByScroll();
+		  // Observe all sections (including bemutatkozas so we can clear actives)
+		  ['bemutatkozas','rolam','orak','arak','kapcsolat','gyik','erdekessegek']
+			.map(id => document.getElementById(id))
+			.filter(Boolean)
+			.forEach(sec => io.observe(sec));
 		});
 	</script>
 </body>
