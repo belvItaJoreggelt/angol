@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>22Egervári Petra - Angol Nyelvtanár</title>
+	<title>Egervári Petra - Angol Nyelvtanár</title>
 	<style>
 	*{
 		margin: 0;
@@ -345,6 +345,21 @@
 		
 	}
 	
+	#contact-info{
+		grid-column: 2;
+		grid-row: 2;
+		background: rgba(255, 255, 255, 0.1);
+		padding: 30px;
+		border-radius: 15px;
+		margin: 20px 0px 50px 0px;
+	}
+	
+	#kontakt-form-wrap{
+		grid-column: 2;
+		grid-row: 3;
+		
+	}
+	
 	#gepelo_kapcsolat{
 		grid-column: 3;
 		grid-row: 3;
@@ -354,17 +369,8 @@
 	#gepelo_kapcsolat img{
 		max-height: 70%;
 		max-width: 70%;
-		
 	}
 	
-	
-	.contact-info {
-		background: rgba(255, 255, 255, 0.1);
-		padding: 30px;
-		border-radius: 15px;
-		margin: 20px 0px 50px 0px;
-		
-	}
 	
 	.contact-item {
 
@@ -661,7 +667,7 @@
 		}
 		
 		
-		.contact-info {
+		#contact-info {
 			display:flex;
 			flex-direction:column;
 			justify-content:center;
@@ -803,7 +809,7 @@
 		}
 		
 		
-		.contact-info {
+		#contact-info {
 			padding: 18px;
 			margin: 8px 0px 22px 0px;
 			
@@ -954,7 +960,7 @@
 		}
 		
 
-		.contact-info {
+		#contact-info {
 			padding: 18px;
 			margin: 8px 0px 22px 0px;
 			
@@ -1173,16 +1179,28 @@
 			max-height: 115%;
 			max-width: 100%;
 		}
-		
-
-		
-		
-		.contact-info {
+			
+		#contact-info {
 			padding: 18px;
-			margin: 8px 0px 22px 0px;
+			margin: 8px 10px 22px 10px;
+			grid-column: 2 / 4;
 			
 		}
 		
+		#kontakt-form-wrap {
+			grid-column: 1 / 3;
+			padding: 10px 40px 0px 40px;
+		}
+		
+		#gepelo_kapcsolat{
+			margin-top: 50%;
+		}
+		
+		#gepelo_kapcsolat img{
+			max-height: 100%;
+			max-width: 100%;
+		}
+	
 		#gyik{
 			display:grid;
 			grid-template-columns: 100%;
@@ -1407,16 +1425,12 @@
 	</div>
 	
 	<div class="oldal szines_oldal" id="kapcsolat">
-	
-			<div id="toltes_kapcs_balFent"> </div>
-			
-			<div id="kapcsolat_felirat"> </div>
-			
-			<div id="toltes_kapcs_jobbFent"> </div>
-			
+
+
 			<div id="telefonalo_kapcsolat"> 	<img src="telefonaloEmberke.png">	</div>
 			
-			<div class="contact-info">
+			
+			<div id="contact-info">
 				<h3>Egervári Petra</h3>
 				
 				<div class="contact-item">
@@ -1428,9 +1442,6 @@
 				</div>
 			</div>
 			
-			<div >	<div id="viewportSize" style="color:#fff;font-weight:600;"></div>	</div>
-			
-			<div> 	</div>
 			
 			<div id='kontakt-form-wrap'  >
 			
