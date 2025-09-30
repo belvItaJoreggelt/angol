@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>3Egervári Petra - Angol Nyelvtanár</title>
+	<title>Egervári Petra - Angol Nyelvtanár</title>
 	<style>
 	*{
 		margin: 0;
@@ -1030,10 +1030,12 @@
 			padding: 18px;
 		}
 		
+		/*
 		#rolam {
-		  grid-template-columns: 25% 50% 25%; 
-		  grid-template-rows: 1%, 18% 62% 1%;       
+		  grid-template-columns: 100%; 
+		  grid-template-rows: 5%, 18% 62% 1%;       
 		}
+		*/
 		
 		#orak{
 			display:grid;
@@ -1089,13 +1091,18 @@
 		
 		#gyik{
 			display:grid;
-			grid-template-columns: 19% 62% 19%;
-
+			grid-template-columns: 100%;
+			grid-template-rows: 5% 90% 5%;
 
 		}
 		
+		
 		#kerdojel_1{
-			margin-top:40px;
+			grid-column:1;
+			grid-row:1;
+			display:flex;
+			flex-direction:column;
+			justify-content:flex-start;
 		}
 		
 		#kerdojel_1 img{
@@ -1103,8 +1110,18 @@
 			max-width:100%;
 		}
 		
+		#content_gyik{
+			grid-column:1;
+			grid-row:2;
+		}
+		
+		
 		#kerdojel_2{
-			margin-bottom:40px;
+			grid-column:1;
+			grid-row:3;
+			display:flex;
+			flex-direction:column;
+			justify-content:flex-end;
 		}
 		
 		#kerdojel_2 img{
