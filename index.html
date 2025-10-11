@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Egervári Petra - Angol Nyelvtanár</title>
+	<title>1Egervári Petra - Angol Nyelvtanár</title>
 	<style>
 	*{
 		margin: 0;
@@ -1850,19 +1850,27 @@
 			  const top = window.scrollY + (header ? header.offsetHeight + 1 : 1);
 			  const firstSecTop = document.getElementById('rolam').offsetTop;
 
-			  // If we're still in #bemutatkozas, clear all actives
+			  // 1️⃣ MINDIG törli az összes "active" osztályt
+			  links.forEach(l => l.classList.remove('active'));
+
+			  // 2️⃣ Ha még a legelső szekció előtt vagyunk, ne legyen semmi aktív
 			  if (top < firstSecTop) {
-				links.forEach(l => l.classList.remove('active'));
 				return;
 			  }
 
+			  // 3️⃣ Megkeresi az éppen látható szekciót
 			  let current = null;
 			  for (const p of pairs) {
-				if (p.sec.offsetTop <= top) current = p; else break;
+				if (p.sec.offsetTop <= top) current = p;
+				else break;
 			  }
-			  links.forEach(l => l.classList.remove('active'));
-			  if (current) current.el.classList.add('active');
-			}
+
+  // 4️⃣ Ha talált aktív szekciót, annak menüpontját "active"-ra állítja
+  if (current) {
+    current.el.classList.add('active');
+  }
+}
+
 
 			window.addEventListener('scroll', setActiveByScroll, { passive: true });
 			window.addEventListener('resize', setActiveByScroll);
