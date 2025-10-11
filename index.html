@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>1Egervári Petra - Angol Nyelvtanár</title>
+	<title>Egervári Petra - Angol Nyelvtanár</title>
 	<style>
 	*{
 		margin: 0;
@@ -1684,10 +1684,28 @@
 	<script>
 
 		function scrollToSection(sectionId) {
-			document.getElementById(sectionId).scrollIntoView({
-				behavior: 'smooth'
-			});
+		  const links = document.querySelectorAll('.menu-container .menupont');
+		  // Töröljük az active osztályt az összes menüpontból
+		  links.forEach(link => link.classList.remove('active'));
+
+		  // Az adott szekcióhoz görgetünk
+		  document.getElementById(sectionId).scrollIntoView({
+			behavior: 'smooth'
+		  });
+
+		  // Kicsi késleltetéssel újra frissítjük az active állapotot
+		  setTimeout(() => {
+			const header = document.getElementById('menu');
+			const top = window.scrollY + (header ? header.offsetHeight + 1 : 1);
+			const target = document.getElementById(sectionId);
+			if (target.offsetTop <= top) {
+			  document
+				.querySelector(`.menupont[onclick*="${sectionId}"]`)
+				.classList.add('active');
+			}
+		  }, 600); // kb. a scroll animáció ideje (0.6s)
 		}
+
 		
 		function updateViewportSize() {
 				var w = window.innerWidth;
@@ -1850,27 +1868,19 @@
 			  const top = window.scrollY + (header ? header.offsetHeight + 1 : 1);
 			  const firstSecTop = document.getElementById('rolam').offsetTop;
 
-			  // 1️⃣ MINDIG törli az összes "active" osztályt
-			  links.forEach(l => l.classList.remove('active'));
-
-			  // 2️⃣ Ha még a legelső szekció előtt vagyunk, ne legyen semmi aktív
+			  // If we're still in #bemutatkozas, clear all actives
 			  if (top < firstSecTop) {
+				links.forEach(l => l.classList.remove('active'));
 				return;
 			  }
 
-			  // 3️⃣ Megkeresi az éppen látható szekciót
 			  let current = null;
 			  for (const p of pairs) {
-				if (p.sec.offsetTop <= top) current = p;
-				else break;
+				if (p.sec.offsetTop <= top) current = p; else break;
 			  }
-
-  // 4️⃣ Ha talált aktív szekciót, annak menüpontját "active"-ra állítja
-  if (current) {
-    current.el.classList.add('active');
-  }
-}
-
+			  links.forEach(l => l.classList.remove('active'));
+			  if (current) current.el.classList.add('active');
+			}
 
 			window.addEventListener('scroll', setActiveByScroll, { passive: true });
 			window.addEventListener('resize', setActiveByScroll);
