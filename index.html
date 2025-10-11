@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>1Egervári Petra - Angol Nyelvtanár</title>
+	<title>Egervári Petra - Angol Nyelvtanár</title>
 	<style>
 	*{
 		margin: 0;
@@ -1912,21 +1912,25 @@
 		  }
 		});
 		
-		document.addEventListener('scroll', function () {
+		let orakAnimated = false;
+
+		window.addEventListener('scroll', function () {
+		  if (orakAnimated) return; // már lefutott egyszer
+
 		  const orak = document.getElementById('orak');
 		  const rect = orak.getBoundingClientRect();
 
-		  // Ellenőrizzük, hogy az #orak legalább részben látható-e
-		  if (rect.top < window.innerHeight && rect.bottom > 0) {
+		  if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
 			const cards = document.querySelectorAll('.benefit-card');
 
 			cards.forEach((card, i) => {
 			  setTimeout(() => {
 				card.classList.add('animate');
-				// Animáció után eltávolítjuk, hogy később újra lehessen aktiválni
 				setTimeout(() => card.classList.remove('animate'), 800);
-			  }, i * 150); // egymás után, 150ms késleltetéssel
+			  }, i * 150);
 			});
+
+			orakAnimated = true;
 		  }
 		});
 	</script>
