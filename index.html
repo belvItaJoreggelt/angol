@@ -1214,10 +1214,9 @@
 		#cashWithCard  {
 			grid-column:1;
 			grid-row:1;
-			display:flex;
-			flex-direction:row;
-			align-items:flex-start;
-			justify-content:center;
+			display:grid;
+			grid-template-columns:1fr 1fr, 1fr;
+			grid-template-rows:1fr;
 		}
 		
 		#cashWithCard img {
@@ -1685,24 +1684,7 @@
 	
 	<script>
 
-		function scrollToSection(sectionId) {
-		  const links = document.querySelectorAll('.menu-container .menupont');
-		  links.forEach(l => l.classList.remove('active'));
-
-		  const target = document.getElementById(sectionId);
-		  const headerHeight = document.getElementById('menu').offsetHeight;
-
-		  // Kézi smooth scroll: ez garantáltan lefut minden mobilon
-		  const targetPos = target.offsetTop - headerHeight;
-		  window.scrollTo({ top: targetPos });
-
-		  // Manuális új active állapot
-		  const clicked = document.querySelector(`.menupont[onclick*="${sectionId}"]`);
-		  if (clicked) clicked.classList.add('active');
-
-		  // Amint az ujjat elengedik, újraszámolja
-		  setTimeout(() => setActiveByScroll(true), 300);
-		}
+		
 
 		
 		function updateViewportSize() {
@@ -1860,9 +1842,10 @@
 			const pairs = links
 				.map(el => ({ el, id: getId(el) }))
 				.filter(p => p.id && document.getElementById(p.id))
-				.map(p => ({ el: p.el, sec: document.getElementById(p.id) }));
-
-			function setActiveByScroll(forceClear = false) {
+				.map(p => ({ el: p.el, sec: document.getElementById(p.id) }));			
+		});
+		
+		function setActiveByScroll(forceClear = false) {
 			  const header = document.getElementById('menu');
 			  const links = Array.from(document.querySelectorAll('.menu-container .menupont'));
 			  const getId = el => ((el.getAttribute('onclick') || '').match(/scrollToSection\('([^']+)'\)/) || [])[1];
@@ -1888,12 +1871,31 @@
 			  if (current) current.el.classList.add('active');
 			}
 
-			// eseményfigyelők
+			// --- eseményfigyelők --- //
 			window.addEventListener('scroll', () => setActiveByScroll());
 			window.addEventListener('touchend', () => setActiveByScroll());
+			window.addEventListener('touchmove', () => setActiveByScroll());
 			window.addEventListener('resize', () => setActiveByScroll());
 			window.addEventListener('load', () => setActiveByScroll());
-		});
+		
+		function scrollToSection(sectionId) {
+		  const links = document.querySelectorAll('.menu-container .menupont');
+		  links.forEach(l => l.classList.remove('active'));
+
+		  const target = document.getElementById(sectionId);
+		  const headerHeight = document.getElementById('menu').offsetHeight;
+
+		  // Kézi smooth scroll: ez garantáltan lefut minden mobilon
+		  const targetPos = target.offsetTop - headerHeight;
+		  window.scrollTo({ top: targetPos });
+
+		  // Manuális új active állapot
+		  const clicked = document.querySelector(`.menupont[onclick*="${sectionId}"]`);
+		  if (clicked) clicked.classList.add('active');
+
+		  // Amint az ujjat elengedik, újraszámolja
+		  setTimeout(() => setActiveByScroll(true), 300);
+		}
 	</script>
 </body>
 </html>
