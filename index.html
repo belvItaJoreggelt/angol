@@ -14,13 +14,12 @@
 	html, body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow-x: hidden;
-		scroll-behavior: smooth;
+			scroll-behavior: smooth;
         }
 	
 	.oldal{
 		height: 100vh;
 		padding-top:7vh;
-		scroll-margin-top: -7vh;
 	}
 	
 	.szines_oldal{
@@ -1885,23 +1884,17 @@
 			window.addEventListener('load', () => setActiveByScroll());
 		
 		function scrollToSection(sectionId) {
-		  const links = document.querySelectorAll('.menu-container .menupont');
-		  links.forEach(l => l.classList.remove('active'));
-
 		  const target = document.getElementById(sectionId);
-		  const headerHeight = document.getElementById('menu').offsetHeight;
 
-		  // Kézi smooth scroll: ez garantáltan lefut minden mobilon
-		  const targetPos = target.offsetTop - headerHeight;
-		  window.scrollTo({ top: targetPos });
+		  // Mennyi “belógást” szeretnél? (px)
+		  const overlap = 0; // pl. 0 = pontosan a szekció tetejére görget, a fix menü rálóg
 
-		  // Manuális új active állapot
-		  const clicked = document.querySelector(`.menupont[onclick*="${sectionId}"]`);
-		  if (clicked) clicked.classList.add('active');
+		  const y = target.offsetTop - overlap; // FIGYELEM: NEM vonjuk le a header magasságát
+		  window.scrollTo({ top: y, behavior: 'smooth' });
 
-		  // Amint az ujjat elengedik, újraszámolja
 		  setTimeout(() => setActiveByScroll(true), 300);
 		}
+
 	</script>
 </body>
 </html>
