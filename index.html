@@ -1216,13 +1216,13 @@
 			grid-row:1;
 			display:flex;
 			flex-direction:column;
-			align-items:flex-start;
+			align-items:center;
 			justify-content:center;
 		}
 		
 		#cashWithCard img {
-			max-height: 50%;
-			max-width: 50%;
+			max-height: 80%;
+			max-width: 80%;
 		}
 		
 		#content_arak  {
@@ -1236,12 +1236,12 @@
 			grid-row:3;
 			display:flex;
 			flex-direction:column;
-			align-items:flex-end;
+			align-items:center;
 		}
 		
 		#moneyWithWings img {
-			max-height: 50%;
-			max-width: 50%;
+			max-height: 80%;
+			max-width: 80%;
 		}
 	
 		.price-item {
@@ -1687,25 +1687,25 @@
 
 		function scrollToSection(sectionId) {
 		  const links = document.querySelectorAll('.menu-container .menupont');
-		  // Töröljük az active osztályt az összes menüpontból
-		  links.forEach(link => link.classList.remove('active'));
+		  links.forEach(l => l.classList.remove('active')); // mindig töröljük az előző kijelölést
 
-		  // Az adott szekcióhoz görgetünk
-		  document.getElementById(sectionId).scrollIntoView({
-			behavior: 'smooth'
+		  const target = document.getElementById(sectionId);
+		  const headerHeight = document.getElementById('menu').offsetHeight;
+
+		  // sima, nem "smooth" scroll – mobilon ez a stabilabb
+		  window.scrollTo({
+			top: target.offsetTop - headerHeight,
+			behavior: 'instant'
 		  });
 
-		  // Kicsi késleltetéssel újra frissítjük az active állapotot
+		  // az új active osztályt beállítjuk
+		  const clicked = document.querySelector(`.menupont[onclick*="${sectionId}"]`);
+		  if (clicked) clicked.classList.add('active');
+
+		  // manuálisan frissítjük a kijelölést később, ha továbbgörget a user
 		  setTimeout(() => {
-			const header = document.getElementById('menu');
-			const top = window.scrollY + (header ? header.offsetHeight + 1 : 1);
-			const target = document.getElementById(sectionId);
-			if (target.offsetTop <= top) {
-			  document
-				.querySelector(`.menupont[onclick*="${sectionId}"]`)
-				.classList.add('active');
-			}
-		  }, 600); // kb. a scroll animáció ideje (0.6s)
+			setActiveByScroll(true);
+		  }, 500);
 		}
 
 		
@@ -1866,12 +1866,19 @@
 				.filter(p => p.id && document.getElementById(p.id))
 				.map(p => ({ el: p.el, sec: document.getElementById(p.id) }));
 
-			function setActiveByScroll() {
+			function setActiveByScroll(forceClear = false) {
+			  const header = document.getElementById('menu');
+			  const links = Array.from(document.querySelectorAll('.menu-container .menupont'));
+			  const getId = el => ((el.getAttribute('onclick') || '').match(/scrollToSection\('([^']+)'\)/) || [])[1];
+			  const pairs = links
+				.map(el => ({ el, id: getId(el) }))
+				.filter(p => p.id && document.getElementById(p.id))
+				.map(p => ({ el: p.el, sec: document.getElementById(p.id) }));
+
 			  const top = window.scrollY + (header ? header.offsetHeight + 1 : 1);
 			  const firstSecTop = document.getElementById('rolam').offsetTop;
 
-			  // If we're still in #bemutatkozas, clear all actives
-			  if (top < firstSecTop) {
+			  if (top < firstSecTop || forceClear) {
 				links.forEach(l => l.classList.remove('active'));
 				return;
 			  }
@@ -1880,14 +1887,16 @@
 			  for (const p of pairs) {
 				if (p.sec.offsetTop <= top) current = p; else break;
 			  }
+
 			  links.forEach(l => l.classList.remove('active'));
 			  if (current) current.el.classList.add('active');
 			}
 
-			window.addEventListener('scroll', setActiveByScroll, { passive: true });
-			window.addEventListener('resize', setActiveByScroll);
-			window.addEventListener('load', setActiveByScroll);
-			setActiveByScroll();
+			// eseményfigyelők
+			window.addEventListener('scroll', () => setActiveByScroll());
+			window.addEventListener('touchend', () => setActiveByScroll());
+			window.addEventListener('resize', () => setActiveByScroll());
+			window.addEventListener('load', () => setActiveByScroll());
 		});
 	</script>
 </body>
