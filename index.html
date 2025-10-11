@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Egervári Petra - Angol Nyelvtanár</title>
+	<title>2Egervári Petra - Angol Nyelvtanár</title>
 	<style>
 	*{
 		margin: 0;
@@ -1890,6 +1890,17 @@
 
 		  setTimeout(() => setActiveByScroll(true), 300);
 		}
+		
+		document.addEventListener('scroll', function () {
+		  const gyik = document.getElementById('gyik');
+		  const contentGyik = document.getElementById('content_gyik');
+		  const rect = gyik.getBoundingClientRect();
+
+		  // Ha a GYIK div teljesen kikerül a képernyőről (felül vagy alul)
+		  if (rect.bottom < 0 || rect.top > window.innerHeight) {
+			contentGyik.scrollTop = 0; // vissza a tetejére
+		  }
+		});
 
 	</script>
 </body>
