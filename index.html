@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Egervári Petra - Angol Nyelvtanár</title>
+	<title>1Egervári Petra - Angol Nyelvtanár</title>
 	<style>
 	*{
 		margin: 0;
@@ -175,25 +175,22 @@
 		grid-template-rows: 5% 20% 5% 30% 35% 5%;
 	}
 	
-	@keyframes cardBounce {
+	@keyframes moveUpDown {
 	  0% {
 		transform: translateY(0);
 	  }
-	  30% {
-		transform: translateY(-20px); /* felfelé mozdul */
-	  }
-	  60% {
-		transform: translateY(10px); /* kicsit visszapattan */
+	  50% {
+		transform: translateY(-15px); /* felmegy 15px-t */
 	  }
 	  100% {
-		transform: translateY(0); /* vissza eredeti helyre */
+		transform: translateY(0); /* vissza */
 	  }
 	}
 
 	.benefit-card.animate {
-	  animation: cardBounce 0.8s ease-in-out;
+	  animation: moveUpDown 0.6s ease-in-out;
 	}
-	
+		
 	#orakAtlatasa{
 		grid-column:2;
 		grid-row:2;
