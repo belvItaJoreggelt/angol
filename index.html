@@ -1694,245 +1694,232 @@
 	
 	<script>
 
-		
+function updateViewportSize() {
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var el = document.getElementById('viewportSize');
+    if (el) {
+        el.textContent = "Ablakméret: " + w + " × " + h + " px";
+    }
+}
+window.addEventListener('resize', updateViewportSize);
+document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) updateViewportSize();
+});
 
-		
-		function updateViewportSize() {
-				var w = window.innerWidth;
-				var h = window.innerHeight;
-				var el = document.getElementById('viewportSize');
-				if (el) {
-					el.textContent = "Ablakméret: " + w + " × " + h + " px";
-				}
-			}
-			window.addEventListener('resize', updateViewportSize);
-			document.addEventListener('visibilitychange', function () {
-				if (!document.hidden) updateViewportSize();
-			});
-		
-		
-		function setupFAQ() {
-			var faqQuestions = document.querySelectorAll('.faq-question');
-			faqQuestions.forEach(function (question) {
-			  question.addEventListener('click', function () {
-				var answer = this.nextElementSibling;
-				var isActive = this.classList.contains('active');
-				faqQuestions.forEach(function (q) {
-				  q.classList.remove('active');
-				  q.nextElementSibling.classList.remove('active');
-				});
-				if (!isActive) {
-				  this.classList.add('active');
-				  answer.classList.add('active');
-				}
-			  });
-			});
-		  }
-		  
-		window.addEventListener('load', (event) => {
-			
-			setupFAQ();
-		});
-		
-		document.addEventListener('DOMContentLoaded', function() {
-			const form = document.getElementById('kontaktForm');
-			const messageDiv = document.getElementById('kontaktUzenet');
-			
-			form.addEventListener('submit', function(e) {
-				e.preventDefault(); // Prevent default form submission
-				
-				// Get form data
-				const formData = new FormData(form);
-				
-				// Show loading message
-				messageDiv.innerHTML = '<span style="color: #ffd700;">Üzenet küldése...</span>';
-				messageDiv.style.display = 'block';
-				
-				// Disable submit button
-				const submitBtn = document.getElementById('kontaktKuldes');
-				submitBtn.disabled = true;
-				submitBtn.textContent = 'Küldés...';
-				
-				// Send data to Web3Forms
-				fetch('https://api.web3forms.com/submit', {
-					method: 'POST',
-					body: formData
-				})
-				.then(response => response.json())
-				.then(data => {
-					if (data.success) {
-						// Success message
-						messageDiv.innerHTML = '<span style="color: #4ade80;">✓ Üzenet sikeresen elküldve! Hamarosan felveszem Önnel a kapcsolatot.</span>';
-						
-						// Clear form
-						form.reset();
-					} else {
-						// Error message
-						messageDiv.innerHTML = '<span style="color: #ef4444;">✗ Hiba történt az üzenet küldése során. Kérjük, próbálja újra vagy használja az email címet.</span>';
-					}
-				})
-				.catch(error => {
-					// Network error
-					messageDiv.innerHTML = '<span style="color: #ef4444;">✗ Hálózati hiba. Kérjük, ellenőrizze az internetkapcsolatot és próbálja újra.</span>';
-					console.error('Error:', error);
-				})
-				.finally(() => {
-					// Re-enable submit button
-					submitBtn.disabled = false;
-					submitBtn.textContent = 'Üzenet küldése';
-					
-					// Hide message after 10 seconds
-					setTimeout(() => {
-						messageDiv.innerHTML = '';
-						messageDiv.style.display = 'none';
-					}, 10000);
-				});
-			});
-			
-			// Real-time form validation
-			const inputs = form.querySelectorAll('input[required], textarea[required]');
-			inputs.forEach(input => {
-				input.addEventListener('blur', function() {
-					if (!this.value.trim()) {
-						this.style.borderColor = '#ef4444';
-						this.style.boxShadow = '0 0 0 2px rgba(239, 68, 68, 0.2)';
-					} else {
-						this.style.borderColor = 'rgba(255,255,255,0.3)';
-						this.style.boxShadow = 'none';
-					}
-				});
-				
-				input.addEventListener('input', function() {
-					if (this.value.trim()) {
-						this.style.borderColor = 'rgba(255,255,255,0.3)';
-						this.style.boxShadow = 'none';
-					}
-				});
-			});
-			
-			// Email validation
-			const emailInput = document.getElementById('email');
-			emailInput.addEventListener('blur', function() {
-				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-				if (this.value && !emailRegex.test(this.value)) {
-					this.style.borderColor = '#ef4444';
-					this.style.boxShadow = '0 0 0 2px rgba(239, 68, 68, 0.2)';
-					messageDiv.innerHTML = '<span style="color: #ef4444;">Kérjük, adjon meg egy érvényes email címet.</span>';
-					messageDiv.style.display = 'block';
-				} else if (this.value && emailRegex.test(this.value)) {
-					this.style.borderColor = '#4ade80';
-					this.style.boxShadow = '0 0 0 2px rgba(74, 222, 128, 0.2)';
-					messageDiv.innerHTML = '';
-					messageDiv.style.display = 'none';
-				}
-			});
-			
-			// Phone validation (Hungarian format)
-			const phoneInput = document.getElementById('tel');
-			phoneInput.addEventListener('blur', function() {
-				const phoneRegex = /^(\+36|06)[\s\-]?[1-9][\d\s\-]{7,8}$/;
-				if (this.value && !phoneRegex.test(this.value)) {
-					this.style.borderColor = '#ef4444';
-					this.style.boxShadow = '0 0 0 2px rgba(239, 68, 68, 0.2)';
-					messageDiv.innerHTML = '<span style="color: #ef4444;">Kérjük, adjon meg egy érvényes magyar telefonszámot (pl: +36 30 123 4567 vagy 06 30 123 4567).</span>';
-					messageDiv.style.display = 'block';
-				} else if (this.value && phoneRegex.test(this.value)) {
-					this.style.borderColor = '#4ade80';
-					this.style.boxShadow = '0 0 0 2px rgba(74, 222, 128, 0.2)';
-					messageDiv.innerHTML = '';
-					messageDiv.style.display = 'none';
-				}
-			});
-		});
-		
-		document.addEventListener('DOMContentLoaded', function () {
-			const header = document.getElementById('menu');
-			const links = Array.from(document.querySelectorAll('.menu-container .menupont'));
-			const getId = el => ((el.getAttribute('onclick') || '').match(/scrollToSection\('([^']+)'\)/) || [])[1];
-			const pairs = links
-				.map(el => ({ el, id: getId(el) }))
-				.filter(p => p.id && document.getElementById(p.id))
-				.map(p => ({ el: p.el, sec: document.getElementById(p.id) }));			
-		});
-		
-		function setActiveByScroll(forceClear = false) {
-			  const header = document.getElementById('menu');
-			  const links = Array.from(document.querySelectorAll('.menu-container .menupont'));
-			  const getId = el => ((el.getAttribute('onclick') || '').match(/scrollToSection\('([^']+)'\)/) || [])[1];
-			  const pairs = links
-				.map(el => ({ el, id: getId(el) }))
-				.filter(p => p.id && document.getElementById(p.id))
-				.map(p => ({ el: p.el, sec: document.getElementById(p.id) }));
 
-			  const top = window.scrollY + (header ? header.offsetHeight + 1 : 1);
-			  const firstSecTop = document.getElementById('rolam').offsetTop;
+function setupFAQ() {
+    var faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(function (question) {
+        question.addEventListener('click', function () {
+            var answer = this.nextElementSibling;
+            var isActive = this.classList.contains('active');
+            faqQuestions.forEach(function (q) {
+                q.classList.remove('active');
+                q.nextElementSibling.classList.remove('active');
+            });
+            if (!isActive) {
+                this.classList.add('active');
+                answer.classList.add('active');
+            }
+        });
+    });
+}
 
-			  if (top < firstSecTop || forceClear) {
-				links.forEach(l => l.classList.remove('active'));
-				return;
-			  }
+window.addEventListener('load', (event) => {
+    setupFAQ();
+});
 
-			  let current = null;
-			  for (const p of pairs) {
-				if (p.sec.offsetTop <= top) current = p; else break;
-			  }
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('kontaktForm');
+    const messageDiv = document.getElementById('kontaktUzenet');
 
-			  links.forEach(l => l.classList.remove('active'));
-			  if (current) current.el.classList.add('active');
-			}
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-			// --- eseményfigyelők --- //
-			window.addEventListener('scroll', () => setActiveByScroll());
-			window.addEventListener('touchend', () => setActiveByScroll());
-			window.addEventListener('touchmove', () => setActiveByScroll());
-			window.addEventListener('resize', () => setActiveByScroll());
-			window.addEventListener('load', () => setActiveByScroll());
-		
-		function scrollToSection(sectionId) {
-		  const target = document.getElementById(sectionId);
+        const formData = new FormData(form);
 
-		  // Mennyi “belógást” szeretnél? (px)
-		  const overlap = 0; // pl. 0 = pontosan a szekció tetejére görget, a fix menü rálóg
+        messageDiv.innerHTML = '<span style="color: #ffd700;">Üzenet küldése...</span>';
+        messageDiv.style.display = 'block';
 
-		  const y = target.offsetTop - overlap; // FIGYELEM: NEM vonjuk le a header magasságát
-		  window.scrollTo({ top: y, behavior: 'smooth' });
+        const submitBtn = document.getElementById('kontaktKuldes');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Küldés...';
 
-		  setTimeout(() => setActiveByScroll(true), 300);
-		}
-		
-		document.addEventListener('scroll', function () {
-		  const gyik = document.getElementById('gyik');
-		  const contentGyik = document.getElementById('content_gyik');
-		  const rect = gyik.getBoundingClientRect();
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                messageDiv.innerHTML = '<span style="color: #4ade80;">✓ Üzenet sikeresen elküldve! Hamarosan felveszem Önnel a kapcsolatot.</span>';
+                form.reset();
+            } else {
+                messageDiv.innerHTML = '<span style="color: #ef4444;">✗ Hiba történt az üzenet küldése során. Kérjük, próbálja újra vagy használja az email címet.</span>';
+            }
+        })
+        .catch(error => {
+            messageDiv.innerHTML = '<span style="color: #ef4444;">✗ Hálózati hiba. Kérjük, ellenőrizze az internetkapcsolatot és próbálja újra.</span>';
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Üzenet küldése';
+            setTimeout(() => {
+                messageDiv.innerHTML = '';
+                messageDiv.style.display = 'none';
+            }, 10000);
+        });
+    });
 
-		  // Ha a GYIK div teljesen kikerül a képernyőről (felül vagy alul)
-		  if (rect.bottom < 0 || rect.top > window.innerHeight) {
-			contentGyik.scrollTop = 0; // vissza a tetejére
-		  }
-		});
-		
-		let orakAnimated = false;
+    const inputs = form.querySelectorAll('input[required], textarea[required]');
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (!this.value.trim()) {
+                this.style.borderColor = '#ef4444';
+                this.style.boxShadow = '0 0 0 2px rgba(239, 68, 68, 0.2)';
+            } else {
+                this.style.borderColor = 'rgba(255,255,255,0.3)';
+                this.style.boxShadow = 'none';
+            }
+        });
 
-		window.addEventListener('scroll', function () {
-		  if (orakAnimated) return; // már lefutott egyszer
+        input.addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.style.borderColor = 'rgba(255,255,255,0.3)';
+                this.style.boxShadow = 'none';
+            }
+        });
+    });
 
-		  const orak = document.getElementById('orak');
-		  const rect = orak.getBoundingClientRect();
+    const emailInput = document.getElementById('email');
+    emailInput.addEventListener('blur', function() {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (this.value && !emailRegex.test(this.value)) {
+            this.style.borderColor = '#ef4444';
+            this.style.boxShadow = '0 0 0 2px rgba(239, 68, 68, 0.2)';
+            messageDiv.innerHTML = '<span style="color: #ef4444;">Kérjük, adjon meg egy érvényes email címet.</span>';
+            messageDiv.style.display = 'block';
+        } else if (this.value) {
+            this.style.borderColor = '#4ade80';
+            this.style.boxShadow = '0 0 0 2px rgba(74, 222, 128, 0.2)';
+            messageDiv.innerHTML = '';
+            messageDiv.style.display = 'none';
+        }
+    });
 
-		  if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
-			const cards = document.querySelectorAll('.benefit-card');
+    const phoneInput = document.getElementById('tel');
+    phoneInput.addEventListener('blur', function() {
+        const phoneRegex = /^(\+36|06)[\s\-]?[1-9][\d\s\-]{7,8}$/;
+        if (this.value && !phoneRegex.test(this.value)) {
+            this.style.borderColor = '#ef4444';
+            this.style.boxShadow = '0 0 0 2px rgba(239, 68, 68, 0.2)';
+            messageDiv.innerHTML = '<span style="color: #ef4444;">Kérjük, adjon meg egy érvényes magyar telefonszámot (pl: +36 30 123 4567 vagy 06 30 123 4567).</span>';
+            messageDiv.style.display = 'block';
+        } else if (this.value) {
+            this.style.borderColor = '#4ade80';
+            this.style.boxShadow = '0 0 0 2px rgba(74, 222, 128, 0.2)';
+            messageDiv.innerHTML = '';
+            messageDiv.style.display = 'none';
+        }
+    });
+});
 
-			cards.forEach((card, i) => {
-			  setTimeout(() => {
-				card.classList.add('animate');
-				setTimeout(() => card.classList.remove('animate'), 800);
-			  }, i * 150);
-			});
 
-			orakAnimated = true;
-		  }
-		});
-	</script>
+// ➤ Kattintáskor AZONNAL active (ÚJ!)
+function setActiveOnClick(el) {
+    const links = document.querySelectorAll('.menu-container .menupont');
+    links.forEach(link => link.classList.remove('active'));
+    el.classList.add('active');
+}
+
+
+// ➤ Javított scroll-spy: NEM törli az active-ot kattintás után
+function setActiveByScroll() {
+    const header = document.getElementById('menu');
+    const links = Array.from(document.querySelectorAll('.menu-container .menupont'));
+    const getId = el => ((el.getAttribute('onclick') || '').match(/scrollToSection\('([^']+)'\)/) || [])[1];
+
+    const pairs = links
+        .map(el => ({ el, id: getId(el) }))
+        .filter(p => p.id && document.getElementById(p.id))
+        .map(p => ({ el: p.el, sec: document.getElementById(p.id) }));
+
+    const top = window.scrollY + (header ? header.offsetHeight + 1 : 1);
+    const firstSecTop = document.getElementById('rolam').offsetTop;
+
+    if (top < firstSecTop) {
+        return;
+    }
+
+    let current = null;
+    for (const p of pairs) {
+        if (p.sec.offsetTop <= top) current = p; else break;
+    }
+
+    if (current) {
+        links.forEach(l => l.classList.remove('active'));
+        current.el.classList.add('active');
+    }
+}
+
+
+// ➤ Eseményfigyelők
+window.addEventListener('scroll', () => setActiveByScroll());
+window.addEventListener('touchend', () => setActiveByScroll());
+window.addEventListener('touchmove', () => setActiveByScroll());
+window.addEventListener('resize', () => setActiveByScroll());
+window.addEventListener('load', () => setActiveByScroll());
+
+
+// ➤ Kattintáskor ne törlődjön az active, ne legyen forceClear
+function scrollToSection(sectionId, el) {
+    const target = document.getElementById(sectionId);
+
+    const y = target.offsetTop;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+
+    // Kattintott menüpont AZONNAL active
+    if (el) setActiveOnClick(el);
+}
+
+
+document.addEventListener('scroll', function () {
+    const gyik = document.getElementById('gyik');
+    const contentGyik = document.getElementById('content_gyik');
+    const rect = gyik.getBoundingClientRect();
+
+    if (rect.bottom < 0 || rect.top > window.innerHeight) {
+        contentGyik.scrollTop = 0;
+    }
+});
+
+
+let orakAnimated = false;
+
+window.addEventListener('scroll', function () {
+    if (orakAnimated) return;
+
+    const orak = document.getElementById('orak');
+    const rect = orak.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+        const cards = document.querySelectorAll('.benefit-card');
+
+        cards.forEach((card, i) => {
+            setTimeout(() => {
+                card.classList.add('animate');
+                setTimeout(() => card.classList.remove('animate'), 800);
+            }, i * 150);
+        });
+
+        orakAnimated = true;
+    }
+});
+
+</script>
+
 </body>
 </html>
 
