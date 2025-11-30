@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Egervári Petra! - Angol Nyelvtanár</title>
+	<title>Egervári Petra - Angol Nyelvtanár</title>
 	<style>
 	*{
 		margin: 0;
@@ -55,53 +55,49 @@
 	}
 	
 	.menupont{
-		cursor: pointer;
-		padding: 10px 20px;
-		border-radius: 25px;
-		transition: all 0.3s ease;
-		font-weight: 500;
-		color: #333;
-		text-decoration: none;
-		
-		transition: 
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+
+    /* Általános átmenetek minden tulajdonságra, egyszerűen */
+    transition: 
         box-shadow 0.6s ease, 
         background 0.3s ease, 
         color 0.3s ease, 
         transform 0.3s ease;
-	}
+}
 
-	/* Hover csak desktopon */
-	@media (hover: hover) and (pointer: fine) {
-		.menupont:hover{
-			box-shadow: 
-				0 0 30px #0b3d91 inset,
-				0 0 30px #0b3d91 inset,
-				0 0 10px #0b3d91 inset,
-				0 0 10px #0b3d91 inset,
-				0 0 10px #0b3d91 inset;
-			color: white;
-			transform: translateY(-2px);
-			transition: all 0.3s ease;
-		}
-	}
+/* Hover csak desktopon */
+@media (hover: hover) and (pointer: fine) {
+    .menupont:hover{
+        box-shadow: 
+            0 0 30px #0b3d91 inset,
+            0 0 30px #0b3d91 inset,
+            0 0 10px #0b3d91 inset,
+            0 0 10px #0b3d91 inset,
+            0 0 10px #0b3d91 inset;
+        color: white;
+        transform: translateY(-2px);
+        /* transition itt már nem kell, mert az alapban megvan */
+    }
+}
 
-	/* Active állapot minden eszközön */
-	.menu-container .menupont.active {
-		box-shadow: 
-			0 0 30px #0b3d91 inset,
-			0 0 30px #0b3d91 inset,
-			0 0 10px #0b3d91 inset,
-			0 0 10px #0b3d91 inset,
-			0 0 10px #0b3d91 inset;
-		transition: all 0.3s ease;
-		
-	}
+/* Active állapot minden eszközön */
+.menu-container .menupont.active {
+    box-shadow: 
+        0 0 30px #0b3d91 inset,
+        0 0 30px #0b3d91 inset,
+        0 0 10px #0b3d91 inset,
+        0 0 10px #0b3d91 inset,
+        0 0 10px #0b3d91 inset;
+    background: #3b82f6;
+    color: white;
+    /* transition itt szintén nem kell, az alap menüpontban definiáltuk */
+}
 
-	
-	.menupont.active{
-		background: #3b82f6;
-		color: white;
-	}
 	
 	#bemutatkozas{
 		background-image:url('Ahatter_2.png');
