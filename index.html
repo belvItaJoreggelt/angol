@@ -63,6 +63,22 @@
 		color: #333;
 		text-decoration: none;
 	}
+
+	/* Hover csak desktopon */
+	@media (hover: hover) and (pointer: fine) {
+		.menupont:hover{
+			box-shadow: 
+				0 0 30px #0b3d91 inset,
+				0 0 30px #0b3d91 inset,
+				0 0 10px #0b3d91 inset,
+				0 0 10px #0b3d91 inset,
+				0 0 10px #0b3d91 inset;
+			color: white;
+			transform: translateY(-2px);
+		}
+	}
+
+	/* Active állapot minden eszközön */
 	.menu-container .menupont.active {
 		box-shadow: 
 			0 0 30px #0b3d91 inset,
@@ -72,11 +88,6 @@
 			0 0 10px #0b3d91 inset;
 	}
 
-	.menupont:hover{
-		
-		color: white;
-		transform: translateY(-2px);
-	}
 	
 	.menupont.active{
 		background: #3b82f6;
