@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Egervári Petra - Angol Nyelvtanár</title>
 	<link rel="canonical" href="https://www.angoltanar.eu/">
+	<link rel="preload" as="image" href="Ahatter_2.webp" type="image/webp" fetchpriority="high">
 
 	<meta name="description" content="Angol nyelvtanár Budapesten (13. ker., Duna Pláza mellett) és online. Egyéni és csoportos órák, ingyenes próbaóra. Cambridge CELTA, kommunikációközpontú oktatás.">
 	<meta property="og:type" content="website">
@@ -197,16 +198,31 @@
 	}
 	
 	#bemutatkozas .content-container {
+		position: relative;
+		overflow: hidden;
 		background: rgba(255, 255, 255, 0.15);
 		padding: 40px;
 		border-radius: 20px;
-		backdrop-filter: blur(15px);
 		border: 1px solid rgba(255, 255, 255, 0.2);
 		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+		color: white;
+		z-index: 2;
 	}
+
+	#bemutatkozas .content-container::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		backdrop-filter: blur(15px);
+		-webkit-backdrop-filter: blur(15px);
+		z-index: -1;
+	}
+
 	#bemutatkozas_szoveg{
 		margin-top: 7vh;
 		transition: all 0.3s ease;
+		color: #fff;
+    	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 	}
 	
 	#bemutatkozas_szoveg:hover{
