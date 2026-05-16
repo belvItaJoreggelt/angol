@@ -757,7 +757,7 @@
 	}
 		
 	.faq-answer.active {
-			max-height: 500px;
+			max-height: 2000px;
 			padding: 15px 20px;
 	}
 		
@@ -1235,6 +1235,12 @@
 	}
 
 	@media (max-width:480px){
+
+		.oldal{
+			min-height: 100vh;
+			height: auto;
+		}
+
 		.menu-container {
 			gap: 5px;
 		}
@@ -1421,11 +1427,23 @@
 		}
 	
 		#gyik{
-			display:grid;
-			grid-template-columns: 100%;
-			grid-template-rows: 2% 80% 15%;
+			height: auto;
+			min-height: 100vh;
+
+			display:flex;
+			flex-direction:column;
+
+			padding-top: 7vh;
+			padding-bottom: 40px;
 		}
-		
+		#content_gyik{
+			overflow: visible;
+			max-height: none;
+			height: auto;
+
+			padding: 10px;
+		}
+
 		.faq-question {
 			font-size: 0.9rem;
 
@@ -1674,7 +1692,7 @@
 			
 			<div id='kontakt-form-wrap'  >
 			
-				<span style="text-align:center;">	<h3>Azonnali üzenet küldése:</h3> </span>
+				<span style="text-align:center;">	<h3>Azonnali üzenet küldésee:</h3> </span>
 			
 				<form id='kontaktForm' class='kapcsolat-form' style='display:grid;gap:10px;max-width:520px;'>
 				  <input type='hidden' name='access_key' value='2ae61607-29e4-4b6f-9475-15cf0e66560e'>
