@@ -1996,20 +1996,35 @@ document.addEventListener('scroll', function () {
 });
 
 // --- Órák animáció 8s ---
+let lastOrakAnimation = 0;
+const ORAK_COOLDOWN_MS = 15000; // 30 másodperc
+
 function animateOrak() {
     const orak = document.getElementById('orak');
     if (!orak) return;
+
+    const now = Date.now();
+    if (now - lastOrakAnimation < ORAK_COOLDOWN_MS) return;
+
     const rect = orak.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-        const cards = document.querySelectorAll('.benefit-card');
-        cards.forEach((card, i) => {
-            setTimeout(() => {
-                card.classList.add('animate');
-                setTimeout(() => card.classList.remove('animate'), 800);
-            }, i * 150);
-        });
-    }
+    const visibleTop = Math.max(rect.top, 0);
+    const visibleBottom = Math.min(rect.bottom, window.innerHeight);
+    const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+    const visibleRatio = rect.height > 0 ? visibleHeight / rect.height : 0;
+
+    if (visibleRatio < 0.55) return;
+
+    lastOrakAnimation = now;
+
+    const cards = document.querySelectorAll('.benefit-card');
+    cards.forEach((card, i) => {
+        setTimeout(() => {
+            card.classList.add('animate');
+            setTimeout(() => card.classList.remove('animate'), 800);
+        }, i * 150);
+    });
 }
+
 setInterval(animateOrak, 8000);
 window.addEventListener('scroll', animateOrak);
 window.addEventListener('resize', animateOrak);
