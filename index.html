@@ -294,6 +294,25 @@
 		grid-template-rows: 5% 20% 5% 30% 35% 5%;
 	}
 	
+	.buborek{
+		background: linear-gradient(135deg,rgba(255, 255, 255, 0.22),rgba(255, 255, 255, 0.08));
+		backdrop-filter: blur(14px);
+		-webkit-backdrop-filter: blur(14px);
+		margin: 10px 0;
+		border: 1px solid rgba(255, 255, 255, 0.28);
+		box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+	}
+
+	#kontaktForm button{
+		box-shadow: 
+            0 0 30px #0b3d91 inset,
+            0 0 30px #0b3d91 inset,
+            0 0 10px #0b3d91 inset,
+            0 0 10px #0b3d91 inset,
+            0 0 10px #0b3d91 inset;
+        color: white;
+	}
+
 	@keyframes moveUpDown {
 	  0% {
 		transform: translateY(0);
@@ -477,15 +496,6 @@
 		text-align:center;
 	}
 	
-	#kapcsolat_felirat{
-		grid-column: 2;
-		grid-row: 1;
-		display:flex;
-		flex-direction:column;
-		justify-content: flex-end;
-		align-items: center;
-
-	}
 	
 	#telefonalo_kapcsolat{
 		grid-column: 1;
@@ -502,12 +512,10 @@
 	#contact-info{
 		grid-column: 2;
 		grid-row: 2;
-		background: rgba(255, 255, 255, 0.1);
 		padding: 30px;
-		border-radius: 15px;
 		margin: 20px 0px 50px 0px;
 		transition: all 0.3s ease;
-		
+		border-radius: 12px;
 	}
 	
 	#contact-info:hover{
@@ -615,21 +623,19 @@
 	}
 	
 	#erdekessegek_szoveg1{
-		grid-column:2;
-		grid-row:2;
-		background: rgba(255, 255, 255, 0.1);
+		grid-column: 2;
+		grid-row: 2;
 		padding: 30px 30px 0px 30px;
-		border-radius: 15px;
+		border-radius: 22px;
 		margin: 10px 0;
 	}
 	
 	#erdekessegek_szoveg2{
 		grid-column:2;
 		grid-row:3;
-		background: rgba(255, 255, 255, 0.1);
-		padding: 30px 30px 0px 30px;
-		border-radius: 15px;
+		padding: 30px 30px 0px 30px;		
 		margin: 10px 0;
+		border-radius: 22px;
 	}
 	
 	#ugato_kutyak_kep{
@@ -1028,7 +1034,7 @@
 	
 		#erdekessegek_szoveg1{
 			padding: 20px 20px 0px 20px;
-
+			border-radius: 15px;
 			margin: 5px 0;
 		}
 		
@@ -1192,6 +1198,7 @@
 	
 		#erdekessegek_szoveg1{
 			padding: 20px 20px 0px 20px;
+			border-radius: 15px;
 			margin: 10px 5px;
 		}
 		
@@ -1353,8 +1360,8 @@
 			justify-content: flex-start;
 		}
 		
-		#cashWithCard img {
-			
+		#cashWithCard img, #moneyWithWings img{
+			max-height: 170px;
 		}
 		
 		#content_arak  {
@@ -1374,11 +1381,7 @@
 			box-sizing: border-box;
 			padding-right: 5vw; /* ⬅️ kis hely a jobb széltől */
 		}
-		
-		#moneyWithWings img {
-			
-		}
-	
+
 		.price-item {
 			font-size: 0.6rem;
 		}
@@ -1488,6 +1491,7 @@
 	
 		#erdekessegek_szoveg1{
 			grid-column: 2 / 4;
+			border-radius: 15px;
 			padding: 20px 20px 0px 20px;
 			margin: 10px 5px;
 		}
@@ -1525,7 +1529,7 @@
 			margin-bottom: 20px;
 			font-weight: 500;
 		}
-	
+		
 		p{
 			font-size: 0.6rem;
 			line-height: 1.7;
@@ -1589,15 +1593,15 @@
 	
 	<div class="oldal szines_oldal" id="orak">
 		<div class="benefits" id="orakAtlatasa">
-			<div class="benefit-card">
+			<div class="benefit-card buborek">
 				<h4>Személyes órák</h4>
-				<p>Budapest 13. kerület, <br>Duna Pláza mellett</p>
+				<p>Budapest 13. kerület, <br>Duna Plázaa mellett</p>
 			</div>
-			<div class="benefit-card">
+			<div class="benefit-card buborek">
 				<h4>Online órák</h4>
 				<p>Google Meet, Zoom</p>
 			</div>
-			<div class="benefit-card">
+			<div class="benefit-card buborek">
 				<h4>Csoportos órák</h4>
 				<p>Kedvezőbb áron,
 				<br>barátokkal/kollegákkal</p>
@@ -1608,13 +1612,13 @@
 			<img src="onlineLearning.webp" alt="online órák">
 		</div>
 
-		<div class="methodology" id="orak_online_szoveg">
+		<div class="methodology buborek" id="orak_online_szoveg">
 			<span style="text-align:center;">	<h3>Miért válaszd az online órákat?</h3> </span>
 			<p>Gondoltál már rá, mennyi időt spórolhatsz az utazáson, ha online tanulsz? 
 			<br>Az óráimon ugyanazt a magas színvonalú oktatást kapod, mint személyesen, csak a saját otthonod kényelméből. Az utazásra szánt időt töltsd inkább tanulással.</p>
 		</div>
 
-		<div class="methodology" id="orak_csoportos_szoveg">
+		<div class="methodology buborek" id="orak_csoportos_szoveg">
 			<span style="text-align:center;">	<h3>Csoportos órák előnyei</h3> </span>
 			<p>Fogjatok össze rokonokkal, barátokkal vagy kollégákkal, ha hasonló szintű az angolotok és jelentkezzetek be csoportos órára, így tudok a legkedvezőbb egyéni árat biztosítani. Tegyétek ezt akár online, így nem akadály, ha az ország, esetleg a világ különböző pontjain éltek.</p>
 		</div>
@@ -1667,7 +1671,7 @@
 			<div id="telefonalo_kapcsolat"> 	<img src="telefonaloEmberke.webp">	</div>
 			
 			
-			<div id="contact-info">
+			<div id="contact-info" class="buborek">
 				<h3>Egervári Petra</h3>
 				
 				<div class="contact-item">
@@ -1682,7 +1686,7 @@
 			
 			<div id='kontakt-form-wrap'  >
 			
-				<span style="text-align:center;">	<h3>Azonnali üzenet küldése:</h3> </span>
+				<span style="text-align:center;">	<h3>Azonnali üzenet küldésee:</h3> </span>
 			
 				<form id='kontaktForm' class='kapcsolat-form' style='display:grid;gap:10px;max-width:520px;'>
 				  <input type='hidden' name='access_key' value='2ae61607-29e4-4b6f-9475-15cf0e66560e'>
@@ -1784,7 +1788,7 @@
 			<img src="feherkuty.webp" alt="barking dogs">
 		</div>
 		
-		<div id="erdekessegek_szoveg1"> 
+		<div id="erdekessegek_szoveg1" class="buborek">
 			<span style="text-align:center">	<h3><strong>Tudtad hogy az állatok is több nyelven beszélnek?</strong> </h3> 	</span>
 			<p ><i>Na jó ez igazából így nem igaz, de az igaz, hogy angolul meglepően sokszor eltérőek a hanghatást jelző szavak, mint magyarul. Ilyen példáúl az...</i>
 			</p> 
@@ -1798,7 +1802,7 @@
 			</p>
 		</div>
 		
-		<div id="erdekessegek_szoveg2">
+		<div id="erdekessegek_szoveg2" class="buborek">
 			<span style="text-align:center">	<h3><strong>Idiómák</strong></h3>	</span>
 			<p style="text-align:center"> 
 			<i>szószerint nehezen vagy egyáltalán nem lefordítható kifejezések, amelyeket használva az angolok valóban úgy érzik hogy egy nyelvet beszélsz velük</i>
